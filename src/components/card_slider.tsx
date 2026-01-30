@@ -5,7 +5,7 @@ import SliderWrapper from './slider_wrapper';
 import { EmblaOptionsType } from 'embla-carousel';
 import Card from './card';
 import Image from 'next/image';
-import { Star } from 'lucide-react';
+import { Star, StarHalf } from 'lucide-react';
 
 interface Data {
     src: string;
@@ -97,19 +97,37 @@ export default function CardSlider() {
                                         <span className='max-w-60 leading-tight font-pop text-white text-sm text-thin'>
                                             {data.content}
                                         </span>
-                                        {data.rating &&
+                                        {
+                                            data.rating &&
                                             <div className='mt-2 flex items-center justify-between'>
                                                 <span className='flex items-center gap-0.5'>
-                                                    {
-                                                        Array.from({ length: data.rating }).map((_, idx) => (
-                                                            <Star size={14} fill='yellow' key={idx} stroke='0' />
-                                                        ))
-                                                    }
+                                                    {(() => {
+                                                        const rating = data.rating;
+                                                        const fullStars = Math.floor(rating);
+                                                        const decimal = rating - fullStars;
+                                                        const showHalf = decimal >= 0.25;
+
+                                                        return (
+                                                            <>
+                                                                {Array.from({ length: fullStars }).map((_, idx) => (
+                                                                    <Star
+                                                                        key={`full-${idx}`}
+                                                                        size={14}
+                                                                        fill="yellow"
+                                                                        stroke="none"
+                                                                    />
+                                                                ))}
+
+                                                                {showHalf && <StarHalf size={14} fill="yellow" stroke="none" />}
+                                                            </>
+                                                        );
+                                                    })()}
                                                 </span>
                                                 <span className='text-white text-sm font-pop'>
                                                     {data.rating}
                                                 </span>
-                                            </div>}
+                                            </div>
+                                        }
                                     </div>
                                 </Card>
                             ))
