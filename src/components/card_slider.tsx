@@ -40,6 +40,30 @@ export default function CardSlider() {
             content: "Available in multiple GSM, weaves & finishes",
             rating: 4,
         },
+        {
+            src: "/images/slider/slider-3.png",
+            name: "Cotton Fabrics",
+            content: "Available in multiple GSM, weaves & finishes",
+            rating: 4,
+        },
+        {
+            src: "/images/slider/slider-4.png",
+            name: "Cotton Fabrics",
+            content: "Available in multiple GSM, weaves & finishes",
+            rating: 4,
+        },
+        {
+            src: "/images/slider/slider-3.png",
+            name: "Cotton Fabrics",
+            content: "Available in multiple GSM, weaves & finishes",
+            rating: 4,
+        },
+        {
+            src: "/images/slider/slider-4.png",
+            name: "Cotton Fabrics",
+            content: "Available in multiple GSM, weaves & finishes",
+            rating: 4,
+        },
     ]
     const OPTIONS: EmblaOptionsType = { align: 'start', dragFree: true }
     return (
