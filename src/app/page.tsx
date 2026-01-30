@@ -1,4 +1,5 @@
 import AdditionalDetails from "../components/additional_details";
+import Ads from "../components/ads";
 import CardSlider from "../components/card_slider";
 import Collections from "../components/collections";
 import Hero from "../components/hero";
@@ -14,6 +15,7 @@ export default function Home() {
       <Collections />
       <ImageSlider />
       <AdditionalDetails />
+      <Ads />
     </>
   );
 }
