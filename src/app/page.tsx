@@ -1,6 +1,7 @@
 import AdditionalDetails from "../components/additional_details";
 import Ads from "../components/ads";
 import CardSlider from "../components/card_slider";
+import Certificate from "../components/certificates";
 import Collections from "../components/collections";
 import CtaBanner from "../components/cta_banner";
 import Hero from "../components/hero";
@@ -22,6 +23,7 @@ export default function Home() {
       <WhyUs />
       <OurExpertise />
       <CtaBanner />
+      <Certificate/>
     </>
   );
 }
