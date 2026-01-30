@@ -1,11 +1,13 @@
 import CardSlider from "../components/card_slider";
 import Hero from "../components/hero";
+import Sponsor from "../components/sponsor";
 
 export default function Home() {
   return (
     <>
       <Hero />
       <CardSlider />
+      <Sponsor/>
     </>
   );
 }
