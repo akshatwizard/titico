@@ -18,7 +18,7 @@ export default function SliderWrapper({ children, options, className }: PropType
     return (
         <section className="embla overflow-hidden relative">
             <div className="embla__viewport" ref={emblaRef}>
-                <div className={cn("embla__container flex mx-10", className)}>
+                <div className={cn("embla__container flex md:mx-10 mx-4", className)}>
                     {Children.map(children, (child, index) => (
                         <div className="embla__slide shrink-0" key={index}>
                             {child}
