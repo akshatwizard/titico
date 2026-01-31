@@ -3,6 +3,7 @@ import Ads from "../components/ads";
 import CardSlider from "../components/card_slider";
 import Certificate from "../components/certificates";
 import Collections from "../components/collections";
+import ContactBanner from "../components/contact_banner";
 import CtaBanner from "../components/cta_banner";
 import Hero from "../components/hero";
 import ImageSlider from "../components/image_slider";
@@ -24,8 +25,9 @@ export default function Home() {
       <WhyUs />
       <OurExpertise />
       <CtaBanner />
-      <Certificate/>
-      <Testimonials/>
+      <Certificate />
+      <Testimonials />
+      <ContactBanner />
     </>
   );
 }
