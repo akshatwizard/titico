@@ -1,9 +1,9 @@
 'use client'
 import { cn } from '@/src/lib/utils';
 import { motion } from 'motion/react';
-import React, { ReactNode } from 'react'
+import React, { ComponentProps, ReactNode } from 'react'
 
-interface Props {
+type Props = ComponentProps<"div"> & {
     children: ReactNode;
     className?: string;
     idx: number;

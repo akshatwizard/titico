@@ -8,6 +8,7 @@ import Hero from "../components/hero";
 import ImageSlider from "../components/image_slider";
 import OurExpertise from "../components/our_expertise";
 import Sponsor from "../components/sponsor";
+import Testimonials from "../components/testimonials";
 import WhyUs from "../components/why_us";
 
 export default function Home() {
@@ -24,6 +25,7 @@ export default function Home() {
       <OurExpertise />
       <CtaBanner />
       <Certificate/>
+      <Testimonials/>
     </>
   );
 }

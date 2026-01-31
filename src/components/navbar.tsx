@@ -197,10 +197,10 @@ export default function Navbar() {
                         })}
                     </div>
 
-                    <Button className="hidden md:flex md:gap-2 md:items-center">
+                    {/* <Button className="hidden md:flex md:gap-2 md:items-center">
                         <PhoneCallIcon size={16} />
                         Contact Us
-                    </Button>
+                    </Button> */}
 
                     <Button className="md:hidden block relative w-10 p-0 hover:bg-transparent h-full bg-transparent z-50"
                         onClick={handleMenuToggle}
