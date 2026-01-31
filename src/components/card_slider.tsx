@@ -81,7 +81,7 @@ export default function CardSlider() {
                     <SliderWrapper options={OPTIONS} className='gap-5'>
                         {
                             data.map((data, idx) => (
-                                <Card idx={idx}
+                                <Card idx={idx} key={idx}
                                     className={`relative rounded-3xl w-85 h-95 border border-gray-200 overflow-hidden`}
                                 >
                                     <Image

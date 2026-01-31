@@ -59,7 +59,7 @@ export default function ToolTip({ data, className }: Props) {
                     key={items.name}
                     idx={idx}
                     className={cn(
-                        "relative lg:size-16 md:size-14 size-10 rounded-full bg-white p-0.5 cursor-pointer",
+                        "relative  size-16 rounded-full bg-white p-0.5 cursor-pointer",
                         idx === 0 ? "ml-0" : "-ml-5.5"
                     )}
                 >
