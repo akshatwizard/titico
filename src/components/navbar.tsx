@@ -131,14 +131,14 @@ export default function Navbar() {
                     duration: 0.3,
                 }}
             >
-                <nav className='w-full max-w-7xl mx-auto flex justify-between items-center h-16'>
+                <nav className={`w-full max-w-7xl mx-auto flex justify-between items-center transition-all duration-300 ease-in-out ${scrolled ? "h-16" : "h-24"}`}>
                     <Link className="relative" href="/">
                         <Image
                             src={"/images/logo/logo.png"}
                             width={150}
                             height={64}
                             alt="Titico Textiles"
-                            className="md:w-14 w-9 h-auto"
+                            className={`${scrolled ? "w-14" : "w-20"} h-auto transition-all duration-300 ease-in-out`}
                         />
                     </Link>
 

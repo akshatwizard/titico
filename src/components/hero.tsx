@@ -72,9 +72,9 @@ export default function Hero() {
                     <div className='w-full h-full md:order-1 order-2'>
                         <motion.div
                             key={activeIndex}
-                            initial={{ opacity: 0, y: 40 }}
-                            animate={{ opacity: 1, y: 0 }}
-                            whileInView={{ opacity: 1, y: 0 }}
+                            initial={{ opacity: 0, x: -50, filter: "blur(24px)" }}
+                            animate={{ opacity: 1, x: 0, filter: "blur(0px)" }}
+                            whileInView={{ opacity: 1, x: 0, filter: "blur(0px)" }}
                             viewport={{
                                 once: false,
                                 amount: 0.4,
@@ -84,14 +84,14 @@ export default function Hero() {
                                 ease: [0.22, 1, 0.36, 1],
                                 delay: 0.2
                             }}
-                            className='w-full pr-10 flex flex-col justify-center h-full'>
+                            className='w-full md:pr-10 flex flex-col justify-center h-full'>
                             <span className='block lg:text-4xl md:text-3xl sm:text-2xl text-xl font-mono text-dark font-bold leading-tight max-w-sm'>
                                 {activeBanner.title}
                             </span>
                             <span className='block mt-3 text-[#202020] font-normal font-pop md:text-lg sm:text-base text-sm leading-tight max-w-sm'>
                                 {activeBanner.content}
                             </span>
-                            <div className='md:mt-9 mt-4 flex max-[460px]:flex-col max-[460px]:items-start flex-row items-center gap-4 md:pb-0 pb-5'>
+                            <div className='md:mt-9 mt-4 flex flex-row items-center gap-4 md:pb-0 pb-5'>
                                 <Button>
                                     Explore Our Collections
                                 </Button>

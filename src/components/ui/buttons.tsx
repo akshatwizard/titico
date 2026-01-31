@@ -10,7 +10,7 @@ export default function Button({ children, className, variant = "default", ...re
     return (
         <button
             className={cn(
-                "font-pop font-medium text-base transition-colors duration-300 ease-in-out px-4 py-3 rounded-md cursor-pointer",
+                "font-pop font-medium md:text-base transition-colors duration-300 ease-in-out md:px-4 md:py-3 rounded-md cursor-pointer px-3 py-2.5 text-sm",
                 variant === "default" && "bg-dark text-white hover:bg-zinc-900",
                 variant === "outline" && "border border-dark text-dark hover:bg-dark",
                 className
