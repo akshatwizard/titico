@@ -3,6 +3,7 @@ import { Poppins, Montserrat_Alternates } from "next/font/google";
 import "./globals.css";
 import Navbar from "../components/navbar";
 import SmoothScrollProvider from "../lib/smooth_scroll";
+import Footer from "../components/footer";
 
 const montserrat = Montserrat_Alternates({
   variable: "--font-montserrat",
@@ -32,6 +33,7 @@ export default function RootLayout({
         <SmoothScrollProvider>
           <Navbar />
           {children}
+          <Footer />
         </SmoothScrollProvider>
       </body>
     </html>
