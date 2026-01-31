@@ -4,6 +4,10 @@
 @theme inline {
   --font-pop: var(--font-poppins);
   --font-mono: var(--font-montserrat);
+  --font-tan: var(--font-tan);
+  --font-dance: var(--font-dancing);
+  --font-play: var(--font-play);
+  --font-yeseva: var(--font-yeseva);
   --color-dark: #282828;
   --color-sub: #6e6e6e;
   --color-cont: #5b5b5b;
@@ -27,6 +31,13 @@
   }
 }
 
-.ac{
+.ac {
   scrollbar-width: none;
+}
+
+h1,
+h2,
+h3,
+h4 {
+  font-family: var(--font-yeseva) !important;
 }

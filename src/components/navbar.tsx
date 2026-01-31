@@ -13,6 +13,7 @@ gsap.registerPlugin(useGSAP);
 interface Menu {
     label: string;
     path: string;
+    description?: string;
 }
 
 export default function Navbar() {
@@ -38,24 +39,34 @@ export default function Navbar() {
 
     const menu: Menu[] = [
         {
-            label: "HOME",
+            label: "Home",
             path: "/",
+            description: "Where Tradition Continues",
         },
         {
-            label: "ABOUT",
+            label: "Our Legacy",
             path: "/#",
+            description: "A Story Across Generations"
         },
         {
-            label: "PRODUCTS",
+            label: "The Craft",
             path: "/#",
+            description: "Skill Passed Hand To Hand"
         },
         {
-            label: "COLLECTIONS",
+            label: "Collections",
             path: "/#",
+            description: "Fabrics Shaped By Heritage"
         },
         {
-            label: "BLOGS",
+            label: "Manufacturing",
             path: "/#",
+            description: "Rooted In Process And Precision"
+        },
+        {
+            label: "Contact",
+            path: "/#",
+            description: "Begin The Conversation"
         },
     ];
     useGSAP(() => {
@@ -142,7 +153,7 @@ export default function Navbar() {
                         />
                     </Link>
 
-                    <div className="hidden md:block">
+                    <div className="hidden lg:block">
                         {menu.map((items) => {
                             const isActive =
                                 currentPath === items.path ||
@@ -150,7 +161,7 @@ export default function Navbar() {
 
                             return (
                                 <Link
-                                    className="relative px-3 inline-block py-2 text-gray-700 transition-all delay-150 hover:text-gray-900 font-mono font-medium"
+                                    className="relative px-3 inline-block py-2 text-gray-700 transition-all delay-150 hover:text-gray-900 font-yeseva font-medium "
                                     href={items.path}
                                     key={items.label}
                                     onMouseEnter={() => setHoverMenu(items.label)}
@@ -184,10 +195,14 @@ export default function Navbar() {
                                     </AnimatePresence>
 
                                     <span
-                                        className={`relative z-10 ${isActive ? "text-teal-600" : "text-gray-600"
-                                            }`}
+                                        className={`relative z-10 text-xl ${isActive ? "text-teal-600" : "text-gray-600"}`}
                                     >
                                         {items.label}
+                                    </span>
+                                    <span
+                                        className={`relative z-10 text-[10px] leading-tight ${isActive ? "text-teal-600" : "text-sub"} block font-pop`}
+                                    >
+                                        {items.description}
                                     </span>
                                     {isActive && (
                                         <span className="absolute inset-x-1 -bottom-px h-px bg-linear-to-r from-teal-500/0 via-teal-500 to-teal-500/0" />
@@ -202,7 +217,7 @@ export default function Navbar() {
                         Contact Us
                     </Button> */}
 
-                    <Button className="md:hidden block relative w-10 p-0 hover:bg-transparent h-full bg-transparent z-50"
+                    <Button className="lg:hidden block relative w-10 p-0 hover:bg-transparent h-full bg-transparent z-50"
                         onClick={handleMenuToggle}
                     >
                         <span className="w-full h-px absolute left-1/2 -translate-x-1/2 top-[43%] bg-dark inline-block" ref={topLine} />
@@ -234,7 +249,7 @@ export default function Navbar() {
 
                         return (
                             <Link
-                                className="relative w-full px-3 py-1 text-gray-700 transition-all delay-150 hover:text-gray-900 font-mono font-medium"
+                                className="relative w-full px-3 py-1 text-gray-700 transition-all delay-150 hover:text-gray-900 font-medium font-yeseva"
                                 href={items.path}
                                 key={items.label}
                                 onClick={handleMenuToggle}
@@ -244,6 +259,9 @@ export default function Navbar() {
                                         }`}
                                 >
                                     {items.label}
+                                    <em className="text-[10px] leading-tight">
+                                        {items.description}
+                                    </em>
                                     <MoveUpRight size={16} />
                                     {isActive && (
                                         <span

@@ -21,7 +21,7 @@ type Props3 = ComponentProps<"p"> & {
 export function PageHeading({ children, className, ...rest }: Props) {
     return (
         <h1
-            className={cn("md:font-extrabold font-semibold lg:text-5xl md:text-4xl text-2xl text-dark font-mono", className)}
+            className={cn("md:font-extrabold font-semibold lg:text-5xl md:text-4xl text-2xl text-dark font-yeseva", className)}
             {...rest}
         >
             {children}
@@ -32,7 +32,7 @@ export function PageHeading({ children, className, ...rest }: Props) {
 export function Heading({ children, className, ...rest }: Props1) {
     return (
         <h2
-            className={cn("md:font-bold font-semibold lg:text-4xl md:text-3xl text-2xl text-dark font-mono", className)}
+            className={cn("md:font-bold font-semibold lg:text-4xl md:text-3xl text-2xl text-dark font-yeseva", className)}
             {...rest}
         >
             {children}
@@ -43,7 +43,7 @@ export function Heading({ children, className, ...rest }: Props1) {
 export function SubHeading({ children, className, ...rest }: Props2) {
     return (
         <span
-            className={cn("inline-block font-medium md:text-base text-sm text-[#6E6E6E] font-pop", className)}
+            className={cn("inline-block font-medium md:text-lg text-base text-sub font-play leading-tight", className)}
             {...rest}
         >
             {children}
