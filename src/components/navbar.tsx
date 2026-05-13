@@ -58,7 +58,7 @@ export default function Navbar() {
                 initial={false}
                 animate={{
                     backdropFilter: scrolled ? "blur(16px)" : "blur(0px)",
-                    backgroundColor: scrolled ? "rgba(249,246,241,0.88)" : "rgba(249,246,241,0)",
+                    backgroundColor: scrolled ? "rgba(249,246,241,0.88)" : "#f9f6f1",
                     borderBottomColor: scrolled ? "rgba(28,26,23,0.1)" : "rgba(28,26,23,0)",
                 }}
                 transition={{ type: "tween", ease: [0.22, 1, 0.36, 1], duration: 0.3 }}
