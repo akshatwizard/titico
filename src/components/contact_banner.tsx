@@ -8,7 +8,7 @@ import { ArrowRight, Mail, PhoneCall } from 'lucide-react'
 
 export default function ContactBanner() {
     return (
-        <Section className='py-20'>
+        <Section>
             <Wrapper>
                 <div className='relative overflow-hidden rounded-4xl border border-white/10 bg-dark'>
 
