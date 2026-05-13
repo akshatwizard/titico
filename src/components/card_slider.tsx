@@ -44,7 +44,7 @@ export default function CardSlider() {
                     Top Exported <em className="italic text-gold">Fabrics</em>
                 </h2>
                 <p className="text-sub text-sm max-w-sm leading-tight">
-                    Our most demanded materials — trusted by buyers in 20+ countries worldwide.
+                    Premium-quality fabrics crafted for fashion, furnishing, upholstery, and global textile markets.
                 </p>
             </div>
 
