@@ -12,6 +12,7 @@ import {
 
 import { AnimatePresence, motion } from "motion/react";
 import { useEffect, useRef } from "react";
+import { useLenisControl } from "../lib/smooth_scroll";
 
 type Props = {
     open: boolean;
@@ -20,6 +21,7 @@ type Props = {
 
 export default function ContactUs({ open, onClose }: Props) {
     const containerRef = useRef<HTMLDivElement | null>(null);
+    const { startScroll, stopScroll } = useLenisControl();
 
     useEffect(() => {
         const handleClickOutside = (event: MouseEvent) => {
@@ -43,6 +45,16 @@ export default function ContactUs({ open, onClose }: Props) {
             document.removeEventListener("keydown", handleEscape);
         };
     }, [open, onClose]);
+
+    useEffect(() => {
+        if (open) {
+            stopScroll();
+        } else startScroll()
+
+        return () => {
+            startScroll()
+        }
+    }, [open, startScroll, stopScroll])
 
     return (
         <AnimatePresence mode="wait">

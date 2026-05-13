@@ -9,7 +9,7 @@ import ContactUs from './contact_us'
 import { useState } from 'react'
 
 export default function ContactBanner() {
-    const [open, setOpen] = useState(true);
+    const [open, setOpen] = useState(false);
     return (
         <>
             <Section>
@@ -97,7 +97,9 @@ export default function ContactBanner() {
 
                             {/* Buttons */}
                             <div className='mt-10 flex flex-col sm:flex-row items-center gap-4'>
-                                <Button className='group flex items-center gap-3 bg-gold text-dark hover:bg-[#d8b06a] px-7 py-6 rounded-full'>
+                                <Button
+                                    onClick={() => setOpen(true)}
+                                    className='group flex items-center gap-3 bg-gold text-dark hover:bg-[#d8b06a] px-7 py-6 rounded-full'>
                                     <Mail size={18} />
                                     Request a Quote
                                     <ArrowRight
@@ -107,6 +109,7 @@ export default function ContactBanner() {
                                 </Button>
 
                                 <Button
+                                    onClick={() => setOpen(true)}
                                     variant='outline'
                                     className='flex items-center gap-3 border border-white/20 bg-transparent text-white hover:bg-white hover:text-dark px-7 py-6 rounded-full'
                                 >
