@@ -306,12 +306,12 @@ export default function LegacyPage() {
                             <div className="flex items-center justify-center gap-3 mb-4">
                                 <div className="w-7 h-px bg-gold" />
                                 <span className="font-mono text-[10px] font-semibold tracking-[0.14em] uppercase text-gold">
-                                    What We Stand On
+                                    What We Stand For
                                 </span>
                                 <div className="w-7 h-px bg-gold" />
                             </div>
                             <h2 className="font-yeseva text-cream text-4xl lg:text-5xl leading-[1.15]">
-                                The pillars of <em className="text-gold not-italic">Titico</em>
+                                The pillars of <em className="text-gold not-italic">Our Company</em>
                             </h2>
                         </div>
                     </FadeUp>
@@ -319,7 +319,9 @@ export default function LegacyPage() {
                         {pillars.map((p, i) => (
                             <FadeUp key={i} delay={0.08 * i}>
                                 <div className="border border-white/10 rounded-xl p-6 hover:border-gold/40 transition-colors duration-300">
-                                    <div className="text-3xl mb-4">{p.icon}</div>
+                                    <div className="text-3xl mb-4 text-gold">
+                                        {<p.icon size={24} />}
+                                    </div>
                                     <h3 className="font-yeseva text-cream text-xl mb-3">{p.title}</h3>
                                     <p className="font-pop font-light text-[#a09890] text-sm leading-relaxed">{p.body}</p>
                                 </div>
@@ -342,7 +344,7 @@ export default function LegacyPage() {
                         <div className="relative max-w-3xl mx-auto text-center py-8">
                             <div className="font-yeseva text-[7rem] text-gold/20 leading-none absolute -top-8 left-0 select-none">"</div>
                             <blockquote className="font-yeseva text-dark text-2xl lg:text-3xl leading-[1.4] mb-6 relative z-10">
-                                A fabric speaks before its maker does. Make it speak of patience, of honesty, and of a hand that cared.
+                                Quality fabrics reflect the care, craftsmanship, and commitment behind every thread
                             </blockquote>
                             <div className="flex items-center justify-center gap-4">
                                 <div className="w-10 h-px bg-gold" />

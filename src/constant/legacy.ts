@@ -1,3 +1,5 @@
+import { BadgeCheck, Handshake, Lightbulb, ShieldCheck } from "lucide-react";
+
 export const timeline = [
     {
         year: "1978",
@@ -52,23 +54,23 @@ export const timeline = [
 
 export const pillars = [
     {
-        icon: "🧵",
-        title: "Craft",
-        body: "Every weave begins with the hands. We have never replaced the artisan — only supported them with better tools and fairer pay.",
+        icon: BadgeCheck,
+        title: "Quality",
+        body: "We focus on delivering fabrics that meet high standards with consistency and precision.",
     },
     {
-        icon: "🌿",
-        title: "Integrity",
-        body: "Honest materials, honest pricing. No synthetic blends disguised as natural, no shortcuts in finishing.",
+        icon: ShieldCheck,
+        title: "Trust",
+        body: "Clients value our commitment to reliability, transparency, and long-term partnerships.",
     },
     {
-        icon: "🌍",
-        title: "Reach",
-        body: "Varanasi's craft belongs to the world. We are its messengers — translating centuries of tradition into fabrics that travel far and last long.",
+        icon: Handshake,
+        title: "Commitment",
+        body: "We work with dedication to provide dependable manufacturing and customer satisfaction.",
     },
     {
-        icon: "⚖️",
-        title: "Balance",
-        body: "Tradition without stagnation. Modernity without erasure. We hold both with care.",
+        icon: Lightbulb,
+        title: "Innovation",
+        body: "We continuously adapt to changing industry needs with modern techniques, refined processes, and a focus on better fabric solutions.",
     },
 ];
