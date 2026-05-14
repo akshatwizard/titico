@@ -103,7 +103,7 @@ function ParallaxBand({ src, alt }: { src: string; alt: string }) {
         target: ref,
         offset: ["start end", "end start"],
     });
-    const y = useTransform(scrollYProgress, [0, 1], ["-10%", "10%"]);
+    const y = useTransform(scrollYProgress, [0, 1], ["-20%", "20%"]);
 
     return (
         <div ref={ref} className="relative w-full h-[40vh] overflow-hidden">
@@ -132,10 +132,10 @@ export default function LegacyPage() {
                                 <div className="absolute -top-4 -left-4 w-full h-full border border-gold/30 rounded-2xl" />
                                 <div className="relative w-full aspect-4/3 rounded-2xl overflow-hidden">
                                     <Image
-                                        src="/images/banner/old.png"
+                                        src="/images/legacy/img-1.png"
                                         alt="Titico early years — handloom weaving in Varanasi"
                                         fill
-                                        className="object-cover"
+                                        className="saturate-0 object-cover"
                                     />
                                 </div>
                                 <div className="absolute bottom-4 left-4 bg-dark/90 backdrop-blur-sm rounded-lg px-4 py-3">
@@ -246,7 +246,7 @@ export default function LegacyPage() {
 
             {/* ── 4. PARALLAX BAND (between timeline and then/now) ── */}
             <ParallaxBand
-                src="/images/banner/banner-2.png"
+                src="/images/banner/our_legacy_01.png"
                 alt="Titico artisans at work — Varanasi weaving floor"
             />
 
@@ -270,13 +270,13 @@ export default function LegacyPage() {
                     <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
                         {[
                             {
-                                img: "/images/banner/old.png",
+                                img: "/images/legacy/old.png",
                                 label: "Then · Our Early Journey",
                                 caption: "Built on craftsmanship, dedication, and textile expertise, our foundation continues to inspire our work today.",
                                 tag: "Handloom · Village",
                             },
                             {
-                                img: "/images/banner/now.png",
+                                img: "/images/legacy/now.png",
                                 label: "Today · Modern Excellence",
                                 caption: "Combining experience with modern manufacturing support to deliver quality fabrics for global markets.",
                                 tag: "120 Looms · Global",
@@ -333,7 +333,7 @@ export default function LegacyPage() {
 
             {/* ── 7. PARALLAX BAND (before founder quote) ── */}
             <ParallaxBand
-                src="/images/banner/banner-4.png"
+                src="/images/banner/our_legacy_02.png"
                 alt="Titico fabric detail — woven in Varanasi"
             />
 
