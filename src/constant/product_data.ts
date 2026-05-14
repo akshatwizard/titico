@@ -8,12 +8,46 @@ interface Data {
 }
 
 export const data: Data[] = [
-    { src: "/images/slider/slider-1.png", name: "Cotton Fabrics", category: "Cotton", content: "Available in multiple GSM, weaves & finishes", rating: 4.5 },
-    { src: "/images/slider/slider-2.png", name: "Banarasi Silk", category: "Silk", content: "Handwoven zari brocade — export grade", rating: 4 },
-    { src: "/images/slider/slider-3.png", name: "Blended Georgette", category: "Blended", content: "Poly-viscose blend, 75 GSM", rating: 4 },
-    { src: "/images/slider/slider-4.png", name: "Knitted Jersey", category: "Knitted", content: "Single jersey, 160–200 GSM range", rating: 4 },
-    { src: "/images/slider/slider-3.png", name: "Woven Twill", category: "Woven", content: "2/2 twill, 200 GSM, export grade", rating: 4 },
-    { src: "/images/slider/slider-4.png", name: "Technical Mesh", category: "Technical", content: "Breathable polyester mesh, UV-resistant", rating: 4 },
-    { src: "/images/slider/slider-1.png", name: "Linen Blend", category: "Blended", content: "Cotton-linen mix, 120 GSM, natural finish", rating: 4.5 },
-    { src: "/images/slider/slider-2.png", name: "Jacquard Brocade", category: "Silk", content: "Dobby Jacquard, 220 GSM, custom patterns", rating: 4 },
+    {
+        src: "/images/fabric/cotton.jpeg",
+        name: "Cotton Fabrics",
+        category: "Cotton",
+        content: "Soft, breathable, and durable fabrics suitable for everyday textile applications.",
+        rating: 4.5
+    },
+    {
+        src: "/images/fabric/linen.jpeg",
+        name: "Linen Fabrics",
+        category: "linen",
+        content: "Natural textured fabrics with an elegant finish for modern interiors and apparel.",
+        rating: 4
+    },
+    {
+        src: "/images/fabric/silk.jpeg",
+        name: "Silk Fabrics",
+        category: "silk",
+        content: "Smooth and luxurious fabrics known for their rich shine and premium feel.",
+        rating: 4
+    },
+    {
+        src: "/images/fabric/ikat.jpeg",
+        name: "Ikat Fabrics",
+        category: "ikat",
+        content: "Designer woven fabrics featuring artistic patterns and timeless traditional appeal.",
+        rating: 4
+    },
+    {
+        src: "/images/fabric/tweed.jpeg",
+        name: "Tweed Fabrics",
+        category: "tweed",
+        content: "Rich textured fabrics with a durable woven finish, ideal for upholstery and premium collections.",
+        rating: 4
+    },
+    {
+        src: "/images/fabric/herring.jpeg",
+        name: "Herringbone Fabrics",
+        category: "Technical",
+        content: "Classic zig-zag patterned fabrics offering a sophisticated and timeless woven look.",
+        rating: 4
+    },
 ]
