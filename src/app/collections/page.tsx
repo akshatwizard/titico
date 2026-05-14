@@ -19,25 +19,25 @@ export default function CollectionsPage() {
             {/* ── HERO ── */}
             <Section className="bg-cream overflow-hidden">
                 <Wrapper className="lg:py-24 py-16 gap-0">
-                    <div className="max-w-2xl">
+                    <div className="max-w-3xl">
                         <FadeUp>
                             <div className="flex items-center gap-3 mb-6">
                                 <div className="w-7 h-px bg-gold" />
                                 <span className="font-mono text-[10px] font-semibold tracking-[0.14em] uppercase text-gold">
-                                    500+ SKUs · 20 Countries
+                                    Premium Fabric Collections
                                 </span>
                                 <div className="w-7 h-px bg-gold" />
                             </div>
                         </FadeUp>
                         <FadeUp delay={0.1}>
                             <h1 className="font-yeseva text-dark text-5xl lg:text-7xl leading-[1.1] mb-6">
-                                Fabrics shaped <br />
-                                <em className="text-gold not-italic">by heritage</em>
+                                Fabrics designed <br />
+                                <em className="text-gold not-italic">for every requirement</em>
                             </h1>
                         </FadeUp>
                         <FadeUp delay={0.2}>
                             <p className="font-pop font-light text-cont text-lg leading-relaxed">
-                                From pure Banarasi Katan to double-Ikat and European-grade linen — every cloth in our collection carries the weight of craft and the lightness of quality.
+                                Explore our collection of Silk, Cotton, Linen, Ikat, Silk-Cotton, Tweed, and Herringbone fabrics crafted for Home & Fashion industries with a focus on quality, texture, and refined finishing.
                             </p>
                         </FadeUp>
                     </div>
