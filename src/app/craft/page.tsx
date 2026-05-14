@@ -224,7 +224,7 @@ export default function CraftPage() {
                     <FadeUp>
                         <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-20 items-center">
                             <div className="relative aspect-4/3 rounded-2xl overflow-hidden">
-                                <Image src="/images/banner/banner-3.png" alt="Artisan at Titico" fill className="object-cover" />
+                                <Image src="/images/banner/banner-2.png" alt="Artisan at Titico" fill className="object-cover" />
                                 <div className="absolute inset-0 bg-linear-to-br from-dark/40 to-transparent" />
                             </div>
                             <div>
