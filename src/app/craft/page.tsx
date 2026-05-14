@@ -21,10 +21,10 @@ function ParallaxHero() {
             {/* ── BACKGROUND: IMAGE (active) ── */}
             <motion.div style={{ y }} className="absolute inset-0 scale-110">
                 <Image
-                    src="/images/banner/banner-2.png"
+                    src="/images/banner/craft.png"
                     alt="Titico craft — artisan weaving in Varanasi loom hall"
                     fill
-                    className="object-cover"
+                    className="object-cover saturate-0"
                     priority
                 />
             </motion.div>

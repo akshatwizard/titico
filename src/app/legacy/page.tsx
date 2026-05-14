@@ -21,7 +21,7 @@ function ParallaxHero() {
 
             <motion.div style={{ y }} className="absolute inset-0 scale-110">
                 <Image
-                    src="/images/banner/banner-1.png"
+                    src="/images/banner/our_legacy.png"
                     alt="Titico legacy — looms and artisans of Varanasi"
                     fill
                     className="object-cover"

@@ -33,15 +33,15 @@ function ParallaxHero() {
         <div ref={ref} className="relative w-full h-[92vh] overflow-hidden">
             <motion.div style={{ y }} className="absolute inset-0 scale-110">
                 <Image
-                    src="/images/banner/banner-2.png"
+                    src="/images/banner/manufacturing.png"
                     alt="Titico manufacturing floor — Varanasi loom hall"
                     fill
-                    className="object-cover"
+                    className="object-cover saturate-0"
                     priority
                 />
             </motion.div>
             {/* Dark gradient */}
-            <div className="absolute inset-0 bg-linear-to-b from-dark/60 via-dark/30 to-dark/80" />
+            <div className="absolute inset-0 bg-linear-to-b from-dark/60 via-dark/50 to-dark/80" />
             {/* Content */}
             <div className="absolute inset-0 flex flex-col justify-end pb-16 px-6">
                 <div className="max-w-7xl mx-auto w-full">
