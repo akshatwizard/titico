@@ -1,5 +1,5 @@
 "use client";
-import { motion, useInView } from "motion/react";
+import { motion, useScroll, useTransform } from "motion/react";
 import { useRef, useState } from 'react';
 import Image from 'next/image';
 import Section from "@/src/components/ui/section";
@@ -7,6 +7,77 @@ import Wrapper from "@/src/components/ui/wrapper";
 import { FadeUp } from "@/src/lib/fade_up";
 import { categories, Category, Product, products } from "@/src/constant/collections_data";
 
+
+function ParallaxHero() {
+    const ref = useRef(null);
+    const { scrollYProgress } = useScroll({
+        target: ref,
+        offset: ["start start", "end start"],
+    });
+    const y = useTransform(scrollYProgress, [0, 1], ["0%", "25%"]);
+
+    return (
+        <div ref={ref} className="relative w-full h-[92vh] overflow-hidden">
+
+            {/* ── BACKGROUND: IMAGE (active) ── */}
+            <motion.div style={{ y }} className="absolute inset-0 scale-110">
+                <Image
+                    src="/images/banner/collections.png"
+                    alt="Titico Collections — artisan weaving in Varanasi loom hall"
+                    fill
+                    className="object-cover saturate-0"
+                    priority
+                />
+            </motion.div>
+
+            {/* Gradient overlay */}
+            <div className="absolute inset-0 bg-linear-to-b from-dark/60 via-dark/25 to-dark/85" />
+
+            {/* Hero content */}
+            <div className="absolute inset-0 flex flex-col justify-end pb-16 px-6">
+                <div className="max-w-7xl mx-auto w-full">
+                    <motion.div
+                        initial={{ opacity: 0, y: 40 }}
+                        animate={{ opacity: 1, y: 0 }}
+                        transition={{ duration: 0.9, ease: [0.22, 1, 0.36, 1], delay: 0.2 }}
+                    >
+                        <div className="flex items-center gap-3 mb-5">
+                            <div className="w-7 h-px bg-gold" />
+                            <span className="font-mono text-[10px] font-semibold tracking-[0.14em] uppercase text-gold">
+                                Premium Fabric Collections
+                            </span>
+                            <div className="w-7 h-px bg-gold" />
+                        </div>
+                        <h1 className="font-yeseva text-cream text-5xl lg:text-[5.5rem] leading-[1.05] mb-6 max-w-4xl">
+                            Fabrics designed <br />
+                            <em className="text-gold not-italic">for every requirement</em>
+                        </h1>
+                        <p className="font-pop font-light text-[#c8bfb0] text-lg leading-relaxed max-w-xl">
+                            Explore our collection of Silk, Cotton, Linen, Ikat, Silk-Cotton, Tweed, and Herringbone fabrics crafted for Home & Fashion industries with a focus on quality, texture, and refined finishing.
+                        </p>
+                    </motion.div>
+                </div>
+            </div>
+
+            {/* Scroll cue */}
+            <motion.div
+                className="absolute bottom-8 right-8 flex flex-col items-center gap-2"
+                initial={{ opacity: 0 }}
+                animate={{ opacity: 1 }}
+                transition={{ delay: 1.2 }}
+            >
+                <span className="font-mono text-[9px] uppercase tracking-[0.2em] text-white/50 rotate-90 origin-center mb-4">
+                    Scroll
+                </span>
+                <motion.div
+                    animate={{ y: [0, 6, 0] }}
+                    transition={{ repeat: Infinity, duration: 1.6, ease: "easeInOut" }}
+                    className="w-px h-10 bg-linear-to-b from-gold to-transparent"
+                />
+            </motion.div>
+        </div>
+    );
+}
 
 export default function CollectionsPage() {
     const [active, setActive] = useState<Category>("All");
@@ -17,32 +88,7 @@ export default function CollectionsPage() {
         <main>
 
             {/* ── HERO ── */}
-            <Section className="bg-cream overflow-hidden">
-                <Wrapper className="lg:py-24 py-16 gap-0">
-                    <div className="max-w-2xl">
-                        <FadeUp>
-                            <div className="flex items-center gap-3 mb-6">
-                                <div className="w-7 h-px bg-gold" />
-                                <span className="font-mono text-[10px] font-semibold tracking-[0.14em] uppercase text-gold">
-                                    500+ SKUs · 20 Countries
-                                </span>
-                                <div className="w-7 h-px bg-gold" />
-                            </div>
-                        </FadeUp>
-                        <FadeUp delay={0.1}>
-                            <h1 className="font-yeseva text-dark text-5xl lg:text-7xl leading-[1.1] mb-6">
-                                Fabrics shaped <br />
-                                <em className="text-gold not-italic">by heritage</em>
-                            </h1>
-                        </FadeUp>
-                        <FadeUp delay={0.2}>
-                            <p className="font-pop font-light text-cont text-lg leading-relaxed">
-                                From pure Banarasi Katan to double-Ikat and European-grade linen — every cloth in our collection carries the weight of craft and the lightness of quality.
-                            </p>
-                        </FadeUp>
-                    </div>
-                </Wrapper>
-            </Section>
+            <ParallaxHero />
 
             {/* ── FILTER + GRID ── */}
             <Section className="bg-[#f3ede4]">

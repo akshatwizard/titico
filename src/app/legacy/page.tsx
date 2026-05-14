@@ -6,6 +6,7 @@ import Section from '@/src/components/ui/section';
 import Wrapper from '@/src/components/ui/wrapper';
 import { pillars, timeline } from '@/src/constant/legacy';
 import { FadeUp } from '@/src/lib/fade_up';
+import { BadgeCheck, Globe2, Sparkle } from "lucide-react";
 
 function ParallaxHero() {
     const ref = useRef(null);
@@ -20,7 +21,7 @@ function ParallaxHero() {
 
             <motion.div style={{ y }} className="absolute inset-0 scale-110">
                 <Image
-                    src="/images/banner/banner-1.png"
+                    src="/images/banner/our_legacy.png"
                     alt="Titico legacy — looms and artisans of Varanasi"
                     fill
                     className="object-cover"
@@ -55,23 +56,24 @@ function ParallaxHero() {
                         <div className="flex items-center gap-3 mb-5">
                             <div className="w-7 h-px bg-gold" />
                             <span className="font-mono text-[10px] font-semibold tracking-[0.14em] uppercase text-gold">
-                                Varanasi · Est. 1978
+                                {/* Varanasi · Est. 1978 */}
+                                Crafted for Global Markets
                             </span>
                             <div className="w-7 h-px bg-gold" />
                         </div>
                         <h1 className="font-yeseva text-cream text-5xl lg:text-[5.5rem] leading-[1.05] mb-6 max-w-4xl">
-                            A Story Woven<br />
-                            <em className="text-gold not-italic">Across Generations</em>
+                            A Legacy of<br />
+                            <em className="text-gold not-italic">Fine Fabrics</em>
                         </h1>
                         <p className="font-pop font-light text-[#c8bfb0] text-lg leading-relaxed max-w-xl">
-                            Forty-five years ago, a single loom was set in motion in a narrow lane of Varanasi. That motion has never stopped. This is what happened in between.
+                            We are engaged in manufacturing and export of Linen, Silk & Polyester fabrics for Home & Fashion industries. With a focus on quality, craftsmanship, and consistency, we deliver fabrics trusted by clients across international markets.
                         </p>
                     </motion.div>
                 </div>
             </div>
 
             {/* Decorative large numeral watermark */}
-            <div className="absolute right-8 bottom-16 font-yeseva text-[18rem] text-white/5 select-none leading-none hidden lg:block pointer-events-none">
+            <div className="absolute right-8 bottom-16 font-yeseva text-[18rem] text-white/15 select-none leading-none hidden lg:block pointer-events-none">
                 1978
             </div>
 
@@ -101,7 +103,7 @@ function ParallaxBand({ src, alt }: { src: string; alt: string }) {
         target: ref,
         offset: ["start end", "end start"],
     });
-    const y = useTransform(scrollYProgress, [0, 1], ["-10%", "10%"]);
+    const y = useTransform(scrollYProgress, [0, 1], ["-20%", "20%"]);
 
     return (
         <div ref={ref} className="relative w-full h-[40vh] overflow-hidden">
@@ -130,10 +132,10 @@ export default function LegacyPage() {
                                 <div className="absolute -top-4 -left-4 w-full h-full border border-gold/30 rounded-2xl" />
                                 <div className="relative w-full aspect-4/3 rounded-2xl overflow-hidden">
                                     <Image
-                                        src="/images/banner/old.png"
+                                        src="/images/legacy/img-1.png"
                                         alt="Titico early years — handloom weaving in Varanasi"
                                         fill
-                                        className="object-cover"
+                                        className="saturate-0 object-cover"
                                     />
                                 </div>
                                 <div className="absolute bottom-4 left-4 bg-dark/90 backdrop-blur-sm rounded-lg px-4 py-3">
@@ -147,28 +149,32 @@ export default function LegacyPage() {
                                 <div className="flex items-center gap-3 mb-5">
                                     <div className="w-7 h-px bg-gold" />
                                     <span className="font-mono text-[10px] font-semibold tracking-[0.14em] uppercase text-gold">
-                                        Our Foundation
+                                        Our Journey
                                     </span>
                                 </div>
                                 <h2 className="font-yeseva text-dark text-4xl lg:text-5xl leading-[1.15] mb-6">
                                     Fabric is not made.{" "}
-                                    <em className="text-gold not-italic">It is inherited.</em>
+                                    <em className="text-gold not-italic"> It is crafted with experience.</em>
                                 </h2>
                                 <p className="font-pop font-light text-cont text-[17px] leading-relaxed mb-4">
-                                    Our story begins the way most great things in Varanasi do — with a family, a craft, and a patience that the modern world rarely permits. Ram Prasad Gupta did not set out to build a business. He set out to make fabric that was honest.
+                                    Our journey began with a passion for creating premium-quality fabrics for home and fashion applications. Over the years, we have built strong expertise in manufacturing Linen, Silk & Polyester fabrics that combine durability, texture, and elegant finishes.
                                 </p>
                                 <p className="font-pop font-light text-cont text-[17px] leading-relaxed mb-6">
-                                    Honest to the yarn. Honest to the weave. Honest to the person who would eventually wear it or drape it or sleep beneath it. That commitment — more than any loom or any market — is what has carried Titico through four generations and forty-five years.
+                                    Today, we continue serving clients with dependable production, quality standards, and a commitment to long-term business relationships.
                                 </p>
                                 <div className="grid grid-cols-3 gap-4 pt-6 border-t border-[#e4ddd4]">
                                     {[
-                                        { val: "45+", lbl: "Years of craft" },
-                                        { val: "4th", lbl: "Generation" },
-                                        { val: "20+", lbl: "Countries" },
+                                        { icon: Sparkle, lbl: "Premium Fabrics" },
+                                        { icon: Globe2, lbl: "Global Reach" },
+                                        { icon: BadgeCheck, lbl: "Trusted Quality" },
                                     ].map((s) => (
-                                        <div key={s.lbl}>
-                                            <div className="font-yeseva text-2xl text-dark">{s.val}</div>
-                                            <div className="font-pop text-[10px] text-[#888] mt-0.5 tracking-wide">{s.lbl}</div>
+                                        <div key={s.lbl} className="flex flex-col gap-2">
+                                            <div className="text-gold">
+                                                {<s.icon strokeWidth={1} />}
+                                            </div>
+                                            <div className="font-pop text-xs text-[#888] mt-0.5 tracking-wide">
+                                                {s.lbl}
+                                            </div>
                                         </div>
                                     ))}
                                 </div>
@@ -240,7 +246,7 @@ export default function LegacyPage() {
 
             {/* ── 4. PARALLAX BAND (between timeline and then/now) ── */}
             <ParallaxBand
-                src="/images/banner/banner-2.png"
+                src="/images/banner/our_legacy_01.png"
                 alt="Titico artisans at work — Varanasi weaving floor"
             />
 
@@ -257,22 +263,22 @@ export default function LegacyPage() {
                                 <div className="w-7 h-px bg-gold" />
                             </div>
                             <h2 className="font-yeseva text-dark text-4xl lg:text-5xl leading-[1.15]">
-                                The same thread, <em className="text-gold not-italic">two centuries</em>
+                                The same quality, <em className="text-gold not-italic">for generations</em>
                             </h2>
                         </div>
                     </FadeUp>
                     <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
                         {[
                             {
-                                img: "/images/banner/old.png",
-                                label: "Then · Pre 1990",
-                                caption: "Born in an age where craft was a way of life, our looms carried stories, not signatures.",
+                                img: "/images/legacy/old.png",
+                                label: "Then · Our Early Journey",
+                                caption: "Built on craftsmanship, dedication, and textile expertise, our foundation continues to inspire our work today.",
                                 tag: "Handloom · Village",
                             },
                             {
-                                img: "/images/banner/now.png",
-                                label: "2024 · Now",
-                                caption: "The same hands, the same discipline — creating fabrics for the present without leaving the past behind.",
+                                img: "/images/legacy/now.png",
+                                label: "Today · Modern Excellence",
+                                caption: "Combining experience with modern manufacturing support to deliver quality fabrics for global markets.",
                                 tag: "120 Looms · Global",
                             },
                         ].map((item, i) => (
@@ -300,12 +306,12 @@ export default function LegacyPage() {
                             <div className="flex items-center justify-center gap-3 mb-4">
                                 <div className="w-7 h-px bg-gold" />
                                 <span className="font-mono text-[10px] font-semibold tracking-[0.14em] uppercase text-gold">
-                                    What We Stand On
+                                    What We Stand For
                                 </span>
                                 <div className="w-7 h-px bg-gold" />
                             </div>
                             <h2 className="font-yeseva text-cream text-4xl lg:text-5xl leading-[1.15]">
-                                The pillars of <em className="text-gold not-italic">Titico</em>
+                                The pillars of <em className="text-gold not-italic">Our Company</em>
                             </h2>
                         </div>
                     </FadeUp>
@@ -313,7 +319,9 @@ export default function LegacyPage() {
                         {pillars.map((p, i) => (
                             <FadeUp key={i} delay={0.08 * i}>
                                 <div className="border border-white/10 rounded-xl p-6 hover:border-gold/40 transition-colors duration-300">
-                                    <div className="text-3xl mb-4">{p.icon}</div>
+                                    <div className="text-3xl mb-4 text-gold">
+                                        {<p.icon size={24} />}
+                                    </div>
                                     <h3 className="font-yeseva text-cream text-xl mb-3">{p.title}</h3>
                                     <p className="font-pop font-light text-[#a09890] text-sm leading-relaxed">{p.body}</p>
                                 </div>
@@ -325,7 +333,7 @@ export default function LegacyPage() {
 
             {/* ── 7. PARALLAX BAND (before founder quote) ── */}
             <ParallaxBand
-                src="/images/banner/banner-4.png"
+                src="/images/banner/our_legacy_02.png"
                 alt="Titico fabric detail — woven in Varanasi"
             />
 
@@ -336,7 +344,7 @@ export default function LegacyPage() {
                         <div className="relative max-w-3xl mx-auto text-center py-8">
                             <div className="font-yeseva text-[7rem] text-gold/20 leading-none absolute -top-8 left-0 select-none">"</div>
                             <blockquote className="font-yeseva text-dark text-2xl lg:text-3xl leading-[1.4] mb-6 relative z-10">
-                                A fabric speaks before its maker does. Make it speak of patience, of honesty, and of a hand that cared.
+                                Quality fabrics reflect the care, craftsmanship, and commitment behind every thread
                             </blockquote>
                             <div className="flex items-center justify-center gap-4">
                                 <div className="w-10 h-px bg-gold" />
