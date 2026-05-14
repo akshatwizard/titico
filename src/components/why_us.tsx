@@ -68,18 +68,16 @@ export default function WhyUs() {
                                     {hoveredIdx === idx && (
                                         <motion.div
                                             layoutId="hover-bg"
-                                            className="absolute inset-0 bg-gold/10"
+                                            className="absolute inset-0 bg-gold/20"
                                             initial={{ opacity: 0 }}
                                             animate={{ opacity: 1 }}
                                             exit={{ opacity: 0 }}
                                             transition={{
-                                                layout: {
-                                                    duration: 0.35,
-                                                    ease: [0.22, 1, 0.36, 1],
-                                                },
-                                                opacity: {
-                                                    duration: 0.5,
-                                                },
+                                                type: "tween",
+                                                stiffness: 280,
+                                                damping: 24,
+                                                mass: 0.8,
+                                                bounce: 0.22,
                                             }}
                                         />
                                     )}
