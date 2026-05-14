@@ -1,11 +1,129 @@
 "use client";
-import { motion } from "motion/react";
-import { useState } from 'react';
+import { motion, useScroll, useTransform } from "motion/react";
+import { useRef, useState } from 'react';
 import Image from 'next/image';
 import Section from "@/src/components/ui/section";
 import Wrapper from "@/src/components/ui/wrapper";
 import { FadeUp } from "@/src/lib/fade_up";
 import { stats, materials, steps } from "@/src/constant/craft";
+
+/* ─────────────────────────────────────────────
+   PARALLAX HERO
+   • Uses an image right now.
+   • Video is commented out — swap once editing is done:
+       1. Delete the <Image … /> block
+       2. Uncomment the <video … /> block
+   ───────────────────────────────────────────── */
+function ParallaxHero() {
+    const ref = useRef(null);
+    const { scrollYProgress } = useScroll({
+        target: ref,
+        offset: ["start start", "end start"],
+    });
+    const y = useTransform(scrollYProgress, [0, 1], ["0%", "25%"]);
+
+    return (
+        <div ref={ref} className="relative w-full h-[92vh] overflow-hidden">
+
+            {/* ── BACKGROUND: IMAGE (active) ── */}
+            <motion.div style={{ y }} className="absolute inset-0 scale-110">
+                <Image
+                    src="/images/banner/banner-2.png"
+                    alt="Titico craft — artisan weaving in Varanasi loom hall"
+                    fill
+                    className="object-cover"
+                    priority
+                />
+            </motion.div>
+
+            {/* ── BACKGROUND: VIDEO (commented — replace image with this once video is ready) ──
+            <motion.div style={{ y }} className="absolute inset-0 scale-110">
+                <video
+                    src="/videos/craft-hero.mp4"
+                    autoPlay
+                    muted
+                    loop
+                    playsInline
+                    className="w-full h-full object-cover"
+                />
+            </motion.div>
+            ── END VIDEO ── */}
+
+            {/* Gradient overlay */}
+            <div className="absolute inset-0 bg-linear-to-b from-dark/60 via-dark/25 to-dark/85" />
+
+            {/* Hero content */}
+            <div className="absolute inset-0 flex flex-col justify-end pb-16 px-6">
+                <div className="max-w-7xl mx-auto w-full">
+                    <motion.div
+                        initial={{ opacity: 0, y: 40 }}
+                        animate={{ opacity: 1, y: 0 }}
+                        transition={{ duration: 0.9, ease: [0.22, 1, 0.36, 1], delay: 0.2 }}
+                    >
+                        <div className="flex items-center gap-3 mb-5">
+                            <div className="w-7 h-px bg-gold" />
+                            <span className="font-mono text-[10px] font-semibold tracking-[0.14em] uppercase text-gold">
+                                Varanasi · 120 Looms · 300+ Artisans
+                            </span>
+                            <div className="w-7 h-px bg-gold" />
+                        </div>
+                        <h1 className="font-yeseva text-cream text-5xl lg:text-[5.5rem] leading-[1.05] mb-6 max-w-4xl">
+                            Skill passed<br />
+                            <em className="text-gold not-italic">hand to hand</em>
+                        </h1>
+                        <p className="font-pop font-light text-[#c8bfb0] text-lg leading-relaxed max-w-xl">
+                            Six precision stages. Every metre accountable. From the first twist of yarn to the last fold before export — this is how Titico fabric is made.
+                        </p>
+                    </motion.div>
+                </div>
+            </div>
+
+            {/* Decorative numeral watermark */}
+            <div className="absolute right-8 bottom-16 font-yeseva text-[20rem] text-white/5 leading-none select-none hidden lg:block pointer-events-none">
+                120
+            </div>
+
+            {/* Scroll cue */}
+            <motion.div
+                className="absolute bottom-8 right-8 flex flex-col items-center gap-2"
+                initial={{ opacity: 0 }}
+                animate={{ opacity: 1 }}
+                transition={{ delay: 1.2 }}
+            >
+                <span className="font-mono text-[9px] uppercase tracking-[0.2em] text-white/50 rotate-90 origin-center mb-4">
+                    Scroll
+                </span>
+                <motion.div
+                    animate={{ y: [0, 6, 0] }}
+                    transition={{ repeat: Infinity, duration: 1.6, ease: "easeInOut" }}
+                    className="w-px h-10 bg-linear-to-b from-gold to-transparent"
+                />
+            </motion.div>
+        </div>
+    );
+}
+
+/* ─────────────────────────────────────────────
+   PARALLAX IMAGE BAND
+   Used as a visual breather between sections
+   ───────────────────────────────────────────── */
+function ParallaxBand({ src, alt }: { src: string; alt: string }) {
+    const ref = useRef(null);
+    const { scrollYProgress } = useScroll({
+        target: ref,
+        offset: ["start end", "end start"],
+    });
+    const y = useTransform(scrollYProgress, [0, 1], ["-10%", "10%"]);
+
+    return (
+        <div ref={ref} className="relative w-full h-[40vh] overflow-hidden">
+            <motion.div style={{ y }} className="absolute inset-0 scale-125">
+                <Image src={src} alt={alt} fill className="object-cover" />
+            </motion.div>
+            <div className="absolute inset-0 bg-dark/50" />
+        </div>
+    );
+}
 
 
 export default function CraftPage() {
@@ -14,47 +132,18 @@ export default function CraftPage() {
     return (
         <main>
 
-            {/* ── HERO ── */}
-            <Section className="bg-dark overflow-hidden">
-                <Wrapper className="lg:py-28 py-20 gap-0">
-                    <div className="max-w-3xl relative z-10">
-                        <FadeUp>
-                            <div className="flex items-center gap-3 mb-6">
-                                <div className="w-7 h-px bg-gold" />
-                                <span className="font-mono text-[10px] font-semibold tracking-[0.14em] uppercase text-gold">
-                                    Varanasi · 120 Looms · 300+ Artisans
-                                </span>
-                                <div className="w-7 h-px bg-gold" />
-                            </div>
-                        </FadeUp>
-                        <FadeUp delay={0.1}>
-                            <h1 className="font-yeseva text-cream text-5xl lg:text-7xl leading-[1.1] mb-6">
-                                Skill passed <br />
-                                <em className="text-gold not-italic">hand to hand</em>
-                            </h1>
-                        </FadeUp>
-                        <FadeUp delay={0.2}>
-                            <p className="font-pop text-[#b0a898] text-lg leading-relaxed max-w-xl">
-                                Six precision stages. Every metre accountable. From the first twist of yarn to the last fold before export — this is how Titico fabric is made.
-                            </p>
-                        </FadeUp>
-                    </div>
-                    {/* Decorative */}
-                    <div className="absolute right-0 bottom-0 font-yeseva text-[20rem] text-white/3 leading-none select-none hidden lg:block">
-                        120
-                    </div>
-                </Wrapper>
-            </Section>
+            {/* ── 1. PARALLAX HERO ── */}
+            <ParallaxHero />
 
-            {/* ── STATS STRIP ── */}
-            <Section className="bg-gold">
+            {/* ── 2. STATS STRIP ── */}
+            <Section className="bg-dark border-y border-white/5">
                 <Wrapper className="lg:py-8 py-6">
-                    <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-4">
+                    <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-4 divide-x divide-white/10">
                         {stats.map((s, i) => (
                             <FadeUp key={i} delay={0.05 * i}>
                                 <div className="text-center">
-                                    <div className="font-yeseva text-dark text-3xl">{s.val}</div>
-                                    <div className="font-mono text-[10px] font-bold uppercase tracking-widest text-dark/70 mt-0.5">{s.unit}</div>
+                                    <div className="font-yeseva text-gold text-3xl">{s.val}</div>
+                                    <div className="font-mono text-[10px] font-bold uppercase tracking-widest text-gold/70 mt-0.5">{s.unit}</div>
                                     <div className="font-pop text-[10px] text-dark/60 mt-1 leading-tight">{s.desc}</div>
                                 </div>
                             </FadeUp>
@@ -63,7 +152,7 @@ export default function CraftPage() {
                 </Wrapper>
             </Section>
 
-            {/* ── PROCESS ACCORDION ── */}
+            {/* ── 3. PROCESS ACCORDION ── */}
             <Section className="bg-cream">
                 <Wrapper>
                     <FadeUp>
@@ -169,7 +258,13 @@ export default function CraftPage() {
                 </Wrapper>
             </Section>
 
-            {/* ── MATERIALS ── */}
+            {/* ── 4. PARALLAX BAND (between process and materials) ── */}
+            <ParallaxBand
+                src="/images/banner/banner-1.png"
+                alt="Titico loom hall — yarn winding process"
+            />
+
+            {/* ── 5. MATERIALS ── */}
             <Section className="bg-[#f3ede4]">
                 <Wrapper>
                     <FadeUp>
@@ -218,7 +313,7 @@ export default function CraftPage() {
                 </Wrapper>
             </Section>
 
-            {/* ── ARTISAN COMMITMENT ── */}
+            {/* ── 6. ARTISAN COMMITMENT ── */}
             <Section className="bg-dark">
                 <Wrapper>
                     <FadeUp>
@@ -260,7 +355,7 @@ export default function CraftPage() {
                 </Wrapper>
             </Section>
 
-            {/* ── CTA ── */}
+            {/* ── 7. CTA ── */}
             <Section className="bg-cream">
                 <Wrapper className="lg:py-10 py-8">
                     <FadeUp>

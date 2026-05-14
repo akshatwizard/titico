@@ -1,47 +1,127 @@
 "use client";
+import { motion, useScroll, useTransform } from "motion/react";
+import { useRef } from "react";
 import Image from 'next/image';
-import Section from "@/src/components/ui/section";
-import Wrapper from "@/src/components/ui/wrapper";
-import { pillars, timeline } from "@/src/constant/legacy";
-import { FadeUp } from "@/src/lib/fade_up";
+import Section from '@/src/components/ui/section';
+import Wrapper from '@/src/components/ui/wrapper';
+import { pillars, timeline } from '@/src/constant/legacy';
+import { FadeUp } from '@/src/lib/fade_up';
+
+function ParallaxHero() {
+    const ref = useRef(null);
+    const { scrollYProgress } = useScroll({
+        target: ref,
+        offset: ["start start", "end start"],
+    });
+    const y = useTransform(scrollYProgress, [0, 1], ["0%", "25%"]);
+
+    return (
+        <div ref={ref} className="relative w-full h-[92vh] overflow-hidden">
+
+            <motion.div style={{ y }} className="absolute inset-0 scale-110">
+                <Image
+                    src="/images/banner/banner-1.png"
+                    alt="Titico legacy — looms and artisans of Varanasi"
+                    fill
+                    className="object-cover"
+                    priority
+                />
+            </motion.div>
+
+            {/* ── BACKGROUND: VIDEO (commented — replace image with this once video is ready) ──
+            <motion.div style={{ y }} className="absolute inset-0 scale-110">
+                <video
+                    src="/videos/legacy-hero.mp4"
+                    autoPlay
+                    muted
+                    loop
+                    playsInline
+                    className="w-full h-full object-cover"
+                />
+            </motion.div>
+            ── END VIDEO ── */}
+
+            {/* Gradient overlay */}
+            <div className="absolute inset-0 bg-linear-to-b from-dark/70 via-dark/30 to-dark/85" />
+
+            {/* Hero content */}
+            <div className="absolute inset-0 flex flex-col justify-end pb-16 px-6">
+                <div className="max-w-7xl mx-auto w-full">
+                    <motion.div
+                        initial={{ opacity: 0, y: 40 }}
+                        animate={{ opacity: 1, y: 0 }}
+                        transition={{ duration: 0.9, ease: [0.22, 1, 0.36, 1], delay: 0.2 }}
+                    >
+                        <div className="flex items-center gap-3 mb-5">
+                            <div className="w-7 h-px bg-gold" />
+                            <span className="font-mono text-[10px] font-semibold tracking-[0.14em] uppercase text-gold">
+                                Varanasi · Est. 1978
+                            </span>
+                            <div className="w-7 h-px bg-gold" />
+                        </div>
+                        <h1 className="font-yeseva text-cream text-5xl lg:text-[5.5rem] leading-[1.05] mb-6 max-w-4xl">
+                            A Story Woven<br />
+                            <em className="text-gold not-italic">Across Generations</em>
+                        </h1>
+                        <p className="font-pop font-light text-[#c8bfb0] text-lg leading-relaxed max-w-xl">
+                            Forty-five years ago, a single loom was set in motion in a narrow lane of Varanasi. That motion has never stopped. This is what happened in between.
+                        </p>
+                    </motion.div>
+                </div>
+            </div>
+
+            {/* Decorative large numeral watermark */}
+            <div className="absolute right-8 bottom-16 font-yeseva text-[18rem] text-white/5 select-none leading-none hidden lg:block pointer-events-none">
+                1978
+            </div>
+
+            {/* Scroll cue */}
+            <motion.div
+                className="absolute bottom-8 right-8 flex flex-col items-center gap-2"
+                initial={{ opacity: 0 }}
+                animate={{ opacity: 1 }}
+                transition={{ delay: 1.2 }}
+            >
+                <span className="font-mono text-[9px] uppercase tracking-[0.2em] text-white/50 rotate-90 origin-center mb-4">
+                    Scroll
+                </span>
+                <motion.div
+                    animate={{ y: [0, 6, 0] }}
+                    transition={{ repeat: Infinity, duration: 1.6, ease: "easeInOut" }}
+                    className="w-px h-10 bg-linear-to-b from-gold to-transparent"
+                />
+            </motion.div>
+        </div>
+    );
+}
+
+function ParallaxBand({ src, alt }: { src: string; alt: string }) {
+    const ref = useRef(null);
+    const { scrollYProgress } = useScroll({
+        target: ref,
+        offset: ["start end", "end start"],
+    });
+    const y = useTransform(scrollYProgress, [0, 1], ["-10%", "10%"]);
+
+    return (
+        <div ref={ref} className="relative w-full h-[40vh] overflow-hidden">
+            <motion.div style={{ y }} className="absolute inset-0 scale-125">
+                <Image src={src} alt={alt} fill className="object-cover" />
+            </motion.div>
+            <div className="absolute inset-0 bg-dark/50" />
+        </div>
+    );
+}
+
 
 export default function LegacyPage() {
     return (
         <main>
 
-            {/* ── HERO ── */}
-            <Section className="bg-dark overflow-hidden">
-                <Wrapper className="lg:py-28 py-20 gap-0">
-                    <div className="relative z-10 max-w-3xl">
-                        <FadeUp>
-                            <div className="flex items-center gap-3 mb-6">
-                                <div className="w-7 h-px bg-gold" />
-                                <span className="font-mono text-[10px] font-semibold tracking-[0.14em] uppercase text-gold">
-                                    Varanasi · Est. 1978
-                                </span>
-                                <div className="w-7 h-px bg-gold" />
-                            </div>
-                        </FadeUp>
-                        <FadeUp delay={0.1}>
-                            <h1 className="font-yeseva text-cream text-5xl lg:text-7xl leading-[1.1] mb-6">
-                                A Story Woven <br />
-                                <em className="text-gold not-italic">Across Generations</em>
-                            </h1>
-                        </FadeUp>
-                        <FadeUp delay={0.2}>
-                            <p className="font-pop text-[#b0a898] text-lg leading-relaxed max-w-xl">
-                                Forty-five years ago, a single loom was set in motion in a narrow lane of Varanasi. That motion has never stopped. This is what happened in between.
-                            </p>
-                        </FadeUp>
-                    </div>
-                    {/* Decorative large numeral */}
-                    <div className="absolute right-8 top-1/2 -translate-y-1/2 font-yeseva text-[18rem] text-white/3 select-none leading-none hidden lg:block">
-                        1978
-                    </div>
-                </Wrapper>
-            </Section>
+            {/* ── 1. PARALLAX HERO ── */}
+            <ParallaxHero />
 
-            {/* ── OPENING STATEMENT ── */}
+            {/* ── 2. OPENING STATEMENT ── */}
             <Section className="bg-cream">
                 <Wrapper>
                     <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-20 items-center">
@@ -98,7 +178,7 @@ export default function LegacyPage() {
                 </Wrapper>
             </Section>
 
-            {/* ── TIMELINE ── */}
+            {/* ── 3. TIMELINE ── */}
             <Section className="bg-[#f3ede4]">
                 <Wrapper>
                     <FadeUp>
@@ -116,18 +196,14 @@ export default function LegacyPage() {
                         </div>
                     </FadeUp>
 
-                    {/* Central line */}
                     <div className="relative">
                         <div className="absolute left-1/2 top-0 bottom-0 w-px bg-[#d8cfc4] hidden lg:block" />
-
                         <div className="flex flex-col gap-0">
                             {timeline.map((item, i) => {
                                 const isLeft = item.side === "left";
                                 return (
                                     <FadeUp key={i} delay={0.05 * i}>
-                                        <div className={`relative grid grid-cols-1 lg:grid-cols-[1fr_auto_1fr] items-start gap-6 lg:gap-0 py-10`}>
-
-                                            {/* Left cell */}
+                                        <div className="relative grid grid-cols-1 lg:grid-cols-[1fr_auto_1fr] items-start gap-6 lg:gap-0 py-10">
                                             <div className={`lg:pr-12 ${isLeft ? "lg:text-right" : "lg:opacity-0 lg:pointer-events-none"}`}>
                                                 {isLeft && (
                                                     <>
@@ -137,16 +213,12 @@ export default function LegacyPage() {
                                                     </>
                                                 )}
                                             </div>
-
-                                            {/* Centre dot + year */}
                                             <div className="flex flex-col items-center gap-2 lg:w-24 shrink-0">
                                                 <div className="w-10 h-10 rounded-full bg-dark border-4 border-gold flex items-center justify-center">
                                                     <div className="w-2 h-2 rounded-full bg-gold" />
                                                 </div>
                                                 <span className="font-yeseva text-sm text-dark">{item.year}</span>
                                             </div>
-
-                                            {/* Right cell */}
                                             <div className={`lg:pl-12 ${!isLeft ? "" : "lg:opacity-0 lg:pointer-events-none"}`}>
                                                 {!isLeft && (
                                                     <>
@@ -156,7 +228,6 @@ export default function LegacyPage() {
                                                     </>
                                                 )}
                                             </div>
-
                                         </div>
                                         {i < timeline.length - 1 && <div className="border-b border-[#d8cfc4] lg:hidden" />}
                                     </FadeUp>
@@ -167,7 +238,13 @@ export default function LegacyPage() {
                 </Wrapper>
             </Section>
 
-            {/* ── THEN VS NOW ── */}
+            {/* ── 4. PARALLAX BAND (between timeline and then/now) ── */}
+            <ParallaxBand
+                src="/images/banner/banner-2.png"
+                alt="Titico artisans at work — Varanasi weaving floor"
+            />
+
+            {/* ── 5. THEN VS NOW ── */}
             <Section className="bg-cream">
                 <Wrapper>
                     <FadeUp>
@@ -175,7 +252,7 @@ export default function LegacyPage() {
                             <div className="flex items-center justify-center gap-3 mb-4">
                                 <div className="w-7 h-px bg-gold" />
                                 <span className="font-mono text-[10px] font-semibold tracking-[0.14em] uppercase text-gold">
-                                    Then & Now
+                                    Then &amp; Now
                                 </span>
                                 <div className="w-7 h-px bg-gold" />
                             </div>
@@ -215,7 +292,7 @@ export default function LegacyPage() {
                 </Wrapper>
             </Section>
 
-            {/* ── CORE PILLARS ── */}
+            {/* ── 6. CORE PILLARS ── */}
             <Section className="bg-dark">
                 <Wrapper>
                     <FadeUp>
@@ -246,7 +323,13 @@ export default function LegacyPage() {
                 </Wrapper>
             </Section>
 
-            {/* ── FOUNDER QUOTE ── */}
+            {/* ── 7. PARALLAX BAND (before founder quote) ── */}
+            <ParallaxBand
+                src="/images/banner/banner-4.png"
+                alt="Titico fabric detail — woven in Varanasi"
+            />
+
+            {/* ── 8. FOUNDER QUOTE ── */}
             <Section className="bg-cream">
                 <Wrapper>
                     <FadeUp>
@@ -265,7 +348,7 @@ export default function LegacyPage() {
                 </Wrapper>
             </Section>
 
-            {/* ── CTA ── */}
+            {/* ── 9. CTA ── */}
             <Section className="bg-[#f3ede4]">
                 <Wrapper className="lg:py-10 py-8">
                     <FadeUp>
