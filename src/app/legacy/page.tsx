@@ -4,10 +4,13 @@ import { useRef } from "react";
 import Image from 'next/image';
 import Section from '@/src/components/ui/section';
 import Wrapper from '@/src/components/ui/wrapper';
-import { pillars, timeline } from '@/src/constant/legacy';
+import { timeline } from '@/src/constant/legacy';
 import { FadeUp } from '@/src/lib/fade_up';
-import { BadgeCheck, Globe2, Sparkle } from "lucide-react";
 
+/* ─────────────────────────────────────────
+   PARALLAX HERO
+   Image active · Video commented & ready to swap
+───────────────────────────────────────── */
 function ParallaxHero() {
     const ref = useRef(null);
     const { scrollYProgress } = useScroll({
@@ -19,17 +22,18 @@ function ParallaxHero() {
     return (
         <div ref={ref} className="relative w-full h-[92vh] overflow-hidden">
 
+            {/* ── ACTIVE: Image background ── */}
             <motion.div style={{ y }} className="absolute inset-0 scale-110">
                 <Image
                     src="/images/banner/our_legacy.png"
-                    alt="Titico legacy — looms and artisans of Varanasi"
+                    alt="Titico — manufacturing and exporting fine fabrics since 1978"
                     fill
                     className="object-cover"
                     priority
                 />
             </motion.div>
 
-            {/* ── BACKGROUND: VIDEO (commented — replace image with this once video is ready) ──
+            {/* ── READY: Video background (uncomment when /videos/legacy-hero.mp4 is available) ──
             <motion.div style={{ y }} className="absolute inset-0 scale-110">
                 <video
                     src="/videos/legacy-hero.mp4"
@@ -40,12 +44,12 @@ function ParallaxHero() {
                     className="w-full h-full object-cover"
                 />
             </motion.div>
-            ── END VIDEO ── */}
+            ────────────────────────────────────────────────────────────────── */}
 
             {/* Gradient overlay */}
             <div className="absolute inset-0 bg-linear-to-b from-dark/70 via-dark/30 to-dark/85" />
 
-            {/* Hero content */}
+            {/* Content */}
             <div className="absolute inset-0 flex flex-col justify-end pb-16 px-6">
                 <div className="max-w-7xl mx-auto w-full">
                     <motion.div
@@ -56,8 +60,7 @@ function ParallaxHero() {
                         <div className="flex items-center gap-3 mb-5">
                             <div className="w-7 h-px bg-gold" />
                             <span className="font-mono text-[10px] font-semibold tracking-[0.14em] uppercase text-gold">
-                                {/* Varanasi · Est. 1978 */}
-                                Crafted for Global Markets
+                                Manufacturing & Export · Home &amp; Fashion
                             </span>
                             <div className="w-7 h-px bg-gold" />
                         </div>
@@ -65,39 +68,40 @@ function ParallaxHero() {
                             A Legacy of<br />
                             <em className="text-gold not-italic">Fine Fabrics</em>
                         </h1>
-                        <p className="font-pop font-light text-[#c8bfb0] text-lg leading-relaxed max-w-xl">
-                            We are engaged in manufacturing and export of Linen, Silk & Polyester fabrics for Home & Fashion industries. With a focus on quality, craftsmanship, and consistency, we deliver fabrics trusted by clients across international markets.
+                        <p className="font-pop font-light text-[#c8bfb0] text-lg leading-relaxed max-w-2xl">
+                            Engaged in manufacturing and exporting Fabrics and Made-ups for Home &amp; Fashion for over 43 years — delivering to clients across the world.
                         </p>
                     </motion.div>
                 </div>
             </div>
 
-            {/* Decorative large numeral watermark */}
-            <div className="absolute right-8 bottom-16 font-yeseva text-[18rem] text-white/15 select-none leading-none hidden lg:block pointer-events-none">
+            {/* Watermark numeral */}
+            <div className="absolute right-8 bottom-16 font-yeseva text-[18rem] text-white/[0.07] select-none leading-none hidden lg:block pointer-events-none">
                 1978
             </div>
 
             {/* Scroll cue */}
             <motion.div
-                className="absolute bottom-8 right-8 flex flex-col items-center gap-2"
+                className="absolute bottom-8 left-1/2 -translate-x-1/2 flex flex-col items-center gap-2"
                 initial={{ opacity: 0 }}
                 animate={{ opacity: 1 }}
                 transition={{ delay: 1.2 }}
             >
-                <span className="font-mono text-[9px] uppercase tracking-[0.2em] text-white/50 rotate-90 origin-center mb-4">
-                    Scroll
-                </span>
                 <motion.div
                     animate={{ y: [0, 6, 0] }}
                     transition={{ repeat: Infinity, duration: 1.6, ease: "easeInOut" }}
                     className="w-px h-10 bg-linear-to-b from-gold to-transparent"
                 />
+                <span className="font-mono text-[9px] uppercase tracking-[0.2em] text-white/40">Scroll</span>
             </motion.div>
         </div>
     );
 }
 
-function ParallaxBand({ src, alt }: { src: string; alt: string }) {
+/* ─────────────────────────────────────────
+   PARALLAX BAND — mid-page divider
+───────────────────────────────────────── */
+function ParallaxBand({ src, alt, children }: { src: string; alt: string; children?: React.ReactNode }) {
     const ref = useRef(null);
     const { scrollYProgress } = useScroll({
         target: ref,
@@ -110,12 +114,19 @@ function ParallaxBand({ src, alt }: { src: string; alt: string }) {
             <motion.div style={{ y }} className="absolute inset-0 scale-125">
                 <Image src={src} alt={alt} fill className="object-cover saturate-0" />
             </motion.div>
-            <div className="absolute inset-0 bg-dark/50" />
+            <div className="absolute inset-0 bg-dark/55" />
+            {children && (
+                <div className="absolute inset-0 flex items-center justify-center px-6">
+                    {children}
+                </div>
+            )}
         </div>
     );
 }
 
-
+/* ─────────────────────────────────────────
+   PAGE
+───────────────────────────────────────── */
 export default function LegacyPage() {
     return (
         <main>
@@ -123,17 +134,19 @@ export default function LegacyPage() {
             {/* ── 1. PARALLAX HERO ── */}
             <ParallaxHero />
 
-            {/* ── 2. OPENING STATEMENT ── */}
+            {/* ── 2. ABOUT US ── */}
             <Section className="bg-cream">
                 <Wrapper>
                     <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-20 items-center">
+
+                        {/* Image */}
                         <FadeUp>
                             <div className="relative">
                                 <div className="absolute -top-4 -left-4 w-full h-full border border-gold/30 rounded-2xl" />
                                 <div className="relative w-full aspect-4/3 rounded-2xl overflow-hidden">
                                     <Image
                                         src="/images/legacy/img-1.png"
-                                        alt="Titico early years — handloom weaving in Varanasi"
+                                        alt="Titico manufacturing — fabric production"
                                         fill
                                         className="saturate-0 object-cover"
                                     />
@@ -144,67 +157,223 @@ export default function LegacyPage() {
                                 </div>
                             </div>
                         </FadeUp>
+
+                        {/* Text — About Us from PDF */}
                         <FadeUp delay={0.15}>
                             <div>
                                 <div className="flex items-center gap-3 mb-5">
                                     <div className="w-7 h-px bg-gold" />
                                     <span className="font-mono text-[10px] font-semibold tracking-[0.14em] uppercase text-gold">
-                                        Our Journey
+                                        About Us
                                     </span>
                                 </div>
                                 <h2 className="font-yeseva text-dark text-4xl lg:text-5xl leading-[1.15] mb-6">
-                                    Fabric is not made.{" "}
-                                    <em className="text-gold not-italic"> It is crafted with experience.</em>
+                                    43 Years of{" "}
+                                    <em className="text-gold not-italic">Manufacturing Excellence</em>
                                 </h2>
                                 <p className="font-pop font-light text-cont text-[17px] leading-relaxed mb-4">
-                                    Our journey began with a passion for creating premium-quality fabrics for home and fashion applications. Over the years, we have built strong expertise in manufacturing Linen, Silk & Polyester fabrics that combine durability, texture, and elegant finishes.
+                                    We are engaged in manufacturing and exporting Fabrics and Made-ups for "Home &amp; Fashion" from the last 43 years, exporting to all over the world.
                                 </p>
                                 <p className="font-pop font-light text-cont text-[17px] leading-relaxed mb-6">
-                                    Today, we continue serving clients with dependable production, quality standards, and a commitment to long-term business relationships.
+                                    The Company's present net worth is about 25 Million Dollars and it employs over 200 persons directly or indirectly. Continuous adoption of new technology has been the watchword of the Company — strengthening its diverse operations across state-of-the-art manufacturing units in Bihar, Karnataka and Uttar Pradesh.
                                 </p>
+                                <p className="font-pop font-light text-cont text-[17px] leading-relaxed mb-8">
+                                    Keeping itself updated on fashion and market trends, the Company is today globally recognised for its deep understanding of Silk, Polyester, Linen and Cotton.
+                                </p>
+
+                                {/* Key facts */}
                                 <div className="grid grid-cols-3 gap-4 pt-6 border-t border-[#e4ddd4]">
                                     {[
-                                        { icon: Sparkle, lbl: "Premium Fabrics" },
-                                        { icon: Globe2, lbl: "Global Reach" },
-                                        { icon: BadgeCheck, lbl: "Trusted Quality" },
+                                        { val: "$25M+", lbl: "Net worth" },
+                                        { val: "200+", lbl: "Employees" },
+                                        { val: "43+", lbl: "Years of export" },
                                     ].map((s) => (
-                                        <div key={s.lbl} className="flex flex-col gap-2">
-                                            <div className="text-gold">
-                                                {<s.icon strokeWidth={1} />}
-                                            </div>
-                                            <div className="font-pop text-xs text-[#888] mt-0.5 tracking-wide">
-                                                {s.lbl}
-                                            </div>
+                                        <div key={s.lbl}>
+                                            <div className="font-yeseva text-2xl text-dark">{s.val}</div>
+                                            <div className="font-pop text-[11px] text-[#888] mt-0.5 tracking-wide">{s.lbl}</div>
                                         </div>
                                     ))}
                                 </div>
                             </div>
                         </FadeUp>
+
                     </div>
                 </Wrapper>
             </Section>
 
-            {/* ── 3. TIMELINE ── */}
+            {/* ── 3. AWARDS & RECOGNITION ── */}
             <Section className="bg-[#f3ede4]">
                 <Wrapper>
                     <FadeUp>
-                        <div className="text-center mb-16">
+                        <div className="text-center mb-12">
                             <div className="flex items-center justify-center gap-3 mb-4">
                                 <div className="w-7 h-px bg-gold" />
                                 <span className="font-mono text-[10px] font-semibold tracking-[0.14em] uppercase text-gold">
-                                    The Journey
+                                    Recognition
                                 </span>
                                 <div className="w-7 h-px bg-gold" />
                             </div>
                             <h2 className="font-yeseva text-dark text-4xl lg:text-5xl leading-[1.15]">
-                                Milestones on the <em className="text-gold not-italic">loom</em>
+                                Honoured at the <em className="text-gold not-italic">highest level</em>
+                            </h2>
+                        </div>
+                    </FadeUp>
+
+                    <div className="grid grid-cols-1 md:grid-cols-3 gap-5">
+                        {[
+                            {
+                                icon: "🏛️",
+                                label: "Govt. of India",
+                                title: "One Star Export House",
+                                body: "Recognised by the Government of India for outstanding export performance and established global business presence.",
+                            },
+                            {
+                                icon: "🏆",
+                                label: "Prime Minister of India",
+                                title: "National Export Award",
+                                body: "Awarded the National Export Award by the Hon'ble Prime Minister of India in recognition of excellence in textile exports.",
+                            },
+                            {
+                                icon: "🎖️",
+                                label: "President of India",
+                                title: "Best Export Performance Award",
+                                body: "Presented the Best Export Performance Award by His Excellency the President of India for sustained best-in-class performance.",
+                            },
+                        ].map((award, i) => (
+                            <FadeUp key={i} delay={0.08 * i}>
+                                <div className="bg-white rounded-2xl p-7 border border-[#e4ddd4] hover:border-gold/40 hover:shadow-md transition-all duration-300 h-full flex flex-col">
+                                    <div className="text-4xl mb-5">{award.icon}</div>
+                                    <div className="font-mono text-[9px] uppercase tracking-widest text-gold mb-2">{award.label}</div>
+                                    <h3 className="font-yeseva text-dark text-xl mb-3 leading-snug">{award.title}</h3>
+                                    <p className="font-pop font-light text-cont text-sm leading-relaxed flex-1">{award.body}</p>
+                                </div>
+                            </FadeUp>
+                        ))}
+                    </div>
+                </Wrapper>
+            </Section>
+
+            {/* ── 4. PARALLAX BAND ── */}
+            <ParallaxBand
+                src="/images/banner/our_legacy_01.png"
+                alt="Titico manufacturing floor"
+            >
+                <FadeUp>
+                    <div className="text-center max-w-2xl">
+                        <p className="font-yeseva text-cream text-3xl lg:text-4xl leading-[1.3]">
+                            "Memorandum and adoption of new technology has been the watchword of the Company."
+                        </p>
+                    </div>
+                </FadeUp>
+            </ParallaxBand>
+
+            {/* ── 5. VISION · MISSION · VALUES ── */}
+            <Section className="bg-dark">
+                <Wrapper>
+                    <FadeUp>
+                        <div className="text-center mb-14">
+                            <div className="flex items-center justify-center gap-3 mb-4">
+                                <div className="w-7 h-px bg-gold" />
+                                <span className="font-mono text-[10px] font-semibold tracking-[0.14em] uppercase text-gold">
+                                    Our Foundation
+                                </span>
+                                <div className="w-7 h-px bg-gold" />
+                            </div>
+                            <h2 className="font-yeseva text-cream text-4xl lg:text-5xl leading-[1.15]">
+                                Vision, Mission <em className="text-gold not-italic">&amp; Values</em>
+                            </h2>
+                        </div>
+                    </FadeUp>
+
+                    <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
+
+                        {/* Vision */}
+                        <FadeUp delay={0}>
+                            <div className="border border-white/10 rounded-2xl p-8 hover:border-gold/30 transition-colors duration-300 h-full flex flex-col">
+                                <div className="w-10 h-10 rounded-full border border-gold/40 flex items-center justify-center mb-6 shrink-0">
+                                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#c8a35a" strokeWidth="1.5"><circle cx="12" cy="12" r="3" /><path d="M2 12s3.6-7 10-7 10 7 10 7-3.6 7-10 7-10-7-10-7z" /></svg>
+                                </div>
+                                <div className="font-mono text-[10px] uppercase tracking-widest text-gold mb-3">Vision</div>
+                                <p className="font-pop font-light text-[#a09890] text-sm leading-relaxed flex-1">
+                                    To manufacture products comparable to international standards, to be customer-focused and globally competitive through better quality, latest technology and continuous innovation together with taking responsibility for our environment.
+                                </p>
+                                <div className="mt-6 w-8 h-px bg-gold/40" />
+                            </div>
+                        </FadeUp>
+
+                        {/* Mission — centrepiece */}
+                        <FadeUp delay={0.1}>
+                            <div className="border border-gold/35 rounded-2xl p-8 bg-gold/5 h-full flex flex-col">
+                                <div className="w-10 h-10 rounded-full border border-gold flex items-center justify-center mb-6 shrink-0">
+                                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#c8a35a" strokeWidth="1.5"><path d="M12 2L2 7l10 5 10-5-10-5z" /><path d="M2 17l10 5 10-5" /><path d="M2 12l10 5 10-5" /></svg>
+                                </div>
+                                <div className="font-mono text-[10px] uppercase tracking-widest text-gold mb-3">Mission</div>
+                                <ul className="space-y-4 flex-1">
+                                    {[
+                                        "To manufacture world-class products of outstanding quality that give our customers a competitive advantage through superior products and value.",
+                                        "To encourage people's ownership, empowerment and working under team structure.",
+                                        "To attain highest level of efficiency, integrity and honesty.",
+                                    ].map((point, i) => (
+                                        <li key={i} className="flex items-start gap-3">
+                                            <div className="w-1.5 h-1.5 rounded-full bg-gold mt-1.5 shrink-0" />
+                                            <span className="font-pop font-light text-[#a09890] text-sm leading-relaxed">{point}</span>
+                                        </li>
+                                    ))}
+                                </ul>
+                                <div className="mt-6 w-8 h-px bg-gold/60" />
+                            </div>
+                        </FadeUp>
+
+                        {/* Values */}
+                        <FadeUp delay={0.2}>
+                            <div className="border border-white/10 rounded-2xl p-8 hover:border-gold/30 transition-colors duration-300 h-full flex flex-col">
+                                <div className="w-10 h-10 rounded-full border border-gold/40 flex items-center justify-center mb-6 shrink-0">
+                                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#c8a35a" strokeWidth="1.5"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z" /></svg>
+                                </div>
+                                <div className="font-mono text-[10px] uppercase tracking-widest text-gold mb-3">Values</div>
+                                <ul className="space-y-3 flex-1">
+                                    {[
+                                        "Customer's satisfaction and delight",
+                                        "Superior quality of performance",
+                                        "Concern for the environment and the community",
+                                        "Passionate about excellence",
+                                        "Fair to all — provide a safe workplace and promote healthy work habits",
+                                    ].map((val, i) => (
+                                        <li key={i} className="flex items-start gap-3">
+                                            <div className="w-1.5 h-1.5 rounded-full bg-gold/50 mt-1.5 shrink-0" />
+                                            <span className="font-pop font-light text-[#a09890] text-sm leading-relaxed">{val}</span>
+                                        </li>
+                                    ))}
+                                </ul>
+                                <div className="mt-6 w-8 h-px bg-gold/40" />
+                            </div>
+                        </FadeUp>
+
+                    </div>
+                </Wrapper>
+            </Section>
+
+            {/* ── 6. TIMELINE ── */}
+            <Section className="bg-[#f3ede4]">
+                <Wrapper>
+                    <FadeUp>
+                        <div className="text-center mb-14">
+                            <div className="flex items-center justify-center gap-3 mb-4">
+                                <div className="w-7 h-px bg-gold" />
+                                <span className="font-mono text-[10px] font-semibold tracking-[0.14em] uppercase text-gold">
+                                    How We Make It
+                                </span>
+                                <div className="w-7 h-px bg-gold" />
+                            </div>
+                            <h2 className="font-yeseva text-dark text-4xl lg:text-5xl leading-[1.15]">
+                                Our production <em className="text-gold not-italic">process</em>
                             </h2>
                         </div>
                     </FadeUp>
 
                     <div className="relative">
                         <div className="absolute left-1/2 top-0 bottom-0 w-px bg-[#d8cfc4] hidden lg:block" />
-                        <div className="flex flex-col gap-0">
+                        <div className="flex flex-col">
                             {timeline.map((item, i) => {
                                 const isLeft = item.side === "left";
                                 return (
@@ -244,61 +413,7 @@ export default function LegacyPage() {
                 </Wrapper>
             </Section>
 
-            {/* ── 4. PARALLAX BAND (between timeline and then/now) ── */}
-            <ParallaxBand
-                src="/images/banner/our_legacy_01.png"
-                alt="Titico artisans at work — Varanasi weaving floor"
-            />
-
-            {/* ── 5. THEN VS NOW ── */}
-            <Section className="bg-cream">
-                <Wrapper>
-                    <FadeUp>
-                        <div className="text-center mb-14">
-                            <div className="flex items-center justify-center gap-3 mb-4">
-                                <div className="w-7 h-px bg-gold" />
-                                <span className="font-mono text-[10px] font-semibold tracking-[0.14em] uppercase text-gold">
-                                    Then &amp; Now
-                                </span>
-                                <div className="w-7 h-px bg-gold" />
-                            </div>
-                            <h2 className="font-yeseva text-dark text-4xl lg:text-5xl leading-[1.15]">
-                                The same quality, <em className="text-gold not-italic">for generations</em>
-                            </h2>
-                        </div>
-                    </FadeUp>
-                    <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
-                        {[
-                            {
-                                img: "/images/legacy/old.png",
-                                label: "Then · Our Early Journey",
-                                caption: "Built on craftsmanship, dedication, and textile expertise, our foundation continues to inspire our work today.",
-                                tag: "Handloom · Village",
-                            },
-                            {
-                                img: "/images/legacy/now.png",
-                                label: "Today · Modern Excellence",
-                                caption: "Combining experience with modern manufacturing support to deliver quality fabrics for global markets.",
-                                tag: "120 Looms · Global",
-                            },
-                        ].map((item, i) => (
-                            <FadeUp key={i} delay={i * 0.1}>
-                                <div className="relative group overflow-hidden rounded-2xl aspect-4/3">
-                                    <Image src={item.img} alt={item.label} fill className="object-cover group-hover:scale-105 transition-transform duration-700" />
-                                    <div className="absolute inset-0 bg-linear-to-t from-dark/80 via-dark/20 to-transparent" />
-                                    <div className="absolute bottom-0 left-0 right-0 p-6">
-                                        <div className="font-mono text-[9px] text-gold uppercase tracking-widest mb-1">{item.tag}</div>
-                                        <div className="font-yeseva text-cream text-xl mb-1">{item.label}</div>
-                                        <p className="font-pop text-[#c8bfb0] text-sm leading-relaxed">{item.caption}</p>
-                                    </div>
-                                </div>
-                            </FadeUp>
-                        ))}
-                    </div>
-                </Wrapper>
-            </Section>
-
-            {/* ── 6. CORE PILLARS ── */}
+            {/* ── 7. GLOBAL PRESENCE ── */}
             <Section className="bg-dark">
                 <Wrapper>
                     <FadeUp>
@@ -306,71 +421,208 @@ export default function LegacyPage() {
                             <div className="flex items-center justify-center gap-3 mb-4">
                                 <div className="w-7 h-px bg-gold" />
                                 <span className="font-mono text-[10px] font-semibold tracking-[0.14em] uppercase text-gold">
-                                    What We Stand For
+                                    Our Presence
                                 </span>
                                 <div className="w-7 h-px bg-gold" />
                             </div>
                             <h2 className="font-yeseva text-cream text-4xl lg:text-5xl leading-[1.15]">
-                                The pillars of <em className="text-gold not-italic">Our Company</em>
+                                Trusted across <em className="text-gold not-italic">the world</em>
                             </h2>
+                            <p className="font-pop font-light text-[#a09890] text-base mt-4 max-w-xl mx-auto">
+                                Titico is an over 4 decade old company. Our customers are spread across every major global market.
+                            </p>
                         </div>
                     </FadeUp>
-                    <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
-                        {pillars.map((p, i) => (
-                            <FadeUp key={i} delay={0.08 * i}>
-                                <div className="border border-white/10 rounded-xl p-6 hover:border-gold/40 transition-colors duration-300">
-                                    <div className="text-3xl mb-4 text-gold">
-                                        {<p.icon size={24} />}
+
+                    <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 mb-5">
+                        {[
+                            {
+                                region: "Americas",
+                                emoji: "🌎",
+                                countries: ["USA", "Canada"],
+                            },
+                            {
+                                region: "Europe",
+                                emoji: "🌍",
+                                countries: ["UK", "Germany", "France", "Portugal", "Spain", "Greece"],
+                            },
+                            {
+                                region: "Gulf & Middle East",
+                                emoji: "🕌",
+                                countries: ["Dubai", "Kuwait", "Jordan"],
+                            },
+                            {
+                                region: "Asia & Africa",
+                                emoji: "🌏",
+                                countries: ["South Korea", "Japan", "Singapore", "South Africa", "Kenya"],
+                            },
+                        ].map((r, i) => (
+                            <FadeUp key={i} delay={0.07 * i}>
+                                <div className="border border-white/10 rounded-2xl p-6 hover:border-gold/30 transition-colors duration-300 h-full">
+                                    <div className="flex items-center gap-3 mb-5">
+                                        <span className="text-xl">{r.emoji}</span>
+                                        <span className="font-mono text-[10px] uppercase tracking-widest text-gold">{r.region}</span>
                                     </div>
-                                    <h3 className="font-yeseva text-cream text-xl mb-3">{p.title}</h3>
-                                    <p className="font-pop font-light text-[#a09890] text-sm leading-relaxed">{p.body}</p>
+                                    <ul className="space-y-2">
+                                        {r.countries.map((c) => (
+                                            <li key={c} className="flex items-center gap-2.5">
+                                                <div className="w-1 h-1 rounded-full bg-gold/50 shrink-0" />
+                                                <span className="font-pop text-sm text-[#c0b8b0]">{c}</span>
+                                            </li>
+                                        ))}
+                                    </ul>
                                 </div>
                             </FadeUp>
                         ))}
                     </div>
-                </Wrapper>
-            </Section>
 
-            {/* ── 7. PARALLAX BAND (before founder quote) ── */}
-            <ParallaxBand
-                src="/images/banner/our_legacy_02.png"
-                alt="Titico fabric detail — woven in Varanasi"
-            />
-
-            {/* ── 8. FOUNDER QUOTE ── */}
-            <Section className="bg-cream">
-                <Wrapper>
-                    <FadeUp>
-                        <div className="relative max-w-3xl mx-auto text-center py-8">
-                            <div className="font-yeseva text-[7rem] text-gold/20 leading-none absolute -top-8 left-0 select-none">"</div>
-                            <blockquote className="font-yeseva text-dark text-2xl lg:text-3xl leading-[1.4] mb-6 relative z-10">
-                                Quality fabrics reflect the care, craftsmanship, and commitment behind every thread
-                            </blockquote>
-                            <div className="flex items-center justify-center gap-4">
-                                <div className="w-10 h-px bg-gold" />
-                                <span className="font-pop text-sm text-[#888] uppercase tracking-widest">Ram Prasad Gupta, Founder · 1978</span>
-                                <div className="w-10 h-px bg-gold" />
-                            </div>
+                    <FadeUp delay={0.15}>
+                        <div className="flex items-center gap-4 border border-gold/20 rounded-xl px-6 py-4 bg-gold/5">
+                            <span className="text-xl">🇮🇳</span>
+                            <p className="font-pop text-sm text-[#a09890]">
+                                Strong domestic presence across India, alongside our international export operations.
+                            </p>
                         </div>
                     </FadeUp>
                 </Wrapper>
             </Section>
 
-            {/* ── 9. CTA ── */}
-            <Section className="bg-[#f3ede4]">
-                <Wrapper className="lg:py-10 py-8">
+            {/* ── 8. MANUFACTURING ── */}
+            <Section className="bg-cream">
+                <Wrapper>
+                    <FadeUp>
+                        <div className="text-center mb-14">
+                            <div className="flex items-center justify-center gap-3 mb-4">
+                                <div className="w-7 h-px bg-gold" />
+                                <span className="font-mono text-[10px] font-semibold tracking-[0.14em] uppercase text-gold">
+                                    Manufacturing
+                                </span>
+                                <div className="w-7 h-px bg-gold" />
+                            </div>
+                            <h2 className="font-yeseva text-dark text-4xl lg:text-5xl leading-[1.15]">
+                                Strength in <em className="text-gold not-italic">production</em>
+                            </h2>
+                        </div>
+                    </FadeUp>
+
+                    <div className="grid grid-cols-1 lg:grid-cols-2 gap-10 lg:gap-16 items-start">
+
+                        {/* Left — units + fabric types */}
+                        <FadeUp>
+                            <div className="flex flex-col gap-6">
+
+                                {/* Units */}
+                                <div className="bg-dark rounded-2xl p-7">
+                                    <div className="font-mono text-[10px] uppercase tracking-widest text-gold mb-5">State of the Art Manufacturing Units</div>
+                                    <div className="flex flex-col gap-4">
+                                        {[
+                                            { state: "Bihar", detail: "Fabric manufacturing" },
+                                            { state: "Karnataka", detail: "Fabric manufacturing" },
+                                            { state: "Uttar Pradesh", detail: "Fabric manufacturing" },
+                                        ].map((loc) => (
+                                            <div key={loc.state} className="flex items-center justify-between border-b border-white/10 pb-4 last:border-0 last:pb-0">
+                                                <div className="flex items-center gap-3">
+                                                    <div className="w-1.5 h-1.5 rounded-full bg-gold shrink-0" />
+                                                    <span className="font-yeseva text-cream text-lg">{loc.state}</span>
+                                                </div>
+                                                <span className="font-pop text-[11px] text-[#888]">{loc.detail}</span>
+                                            </div>
+                                        ))}
+                                    </div>
+                                </div>
+
+                                {/* Fabric expertise */}
+                                <div className="bg-[#f3ede4] rounded-2xl p-7 border border-[#e4ddd4]">
+                                    <div className="font-mono text-[10px] uppercase tracking-widest text-gold mb-4">Fabric Expertise</div>
+                                    <div className="grid grid-cols-2 gap-3">
+                                        {["Silk", "Polyester", "Linen", "Cotton"].map((f) => (
+                                            <div key={f} className="flex items-center gap-2.5 bg-white rounded-lg px-4 py-3 border border-[#e4ddd4]">
+                                                <div className="w-1.5 h-1.5 rounded-full bg-gold shrink-0" />
+                                                <span className="font-yeseva text-dark text-base">{f}</span>
+                                            </div>
+                                        ))}
+                                    </div>
+                                </div>
+                            </div>
+                        </FadeUp>
+
+                        {/* Right — looms + capacity */}
+                        <FadeUp delay={0.1}>
+                            <div className="flex flex-col gap-6">
+
+                                {/* Loom types */}
+                                <div className="bg-[#f3ede4] rounded-2xl p-7 border border-[#e4ddd4]">
+                                    <div className="font-mono text-[10px] uppercase tracking-widest text-gold mb-4">Loom Types</div>
+                                    <div className="flex flex-col gap-3">
+                                        {[
+                                            { type: "Handloom", note: "Traditional weave" },
+                                            { type: "Semi-Power Looms", note: "Modern precision" },
+                                        ].map((l) => (
+                                            <div key={l.type} className="flex items-center justify-between border-b border-[#e4ddd4] pb-3 last:border-0 last:pb-0">
+                                                <div className="flex items-center gap-3">
+                                                    <div className="w-1.5 h-1.5 rounded-full bg-gold shrink-0" />
+                                                    <span className="font-yeseva text-dark text-base">{l.type}</span>
+                                                </div>
+                                                <span className="font-pop text-[11px] text-[#888]">{l.note}</span>
+                                            </div>
+                                        ))}
+                                    </div>
+                                    <div className="mt-4 pt-4 border-t border-[#e4ddd4]">
+                                        <div className="font-mono text-[10px] uppercase tracking-widest text-[#bbb] mb-2">Constructions</div>
+                                        <div className="flex gap-2 flex-wrap">
+                                            {["Plain", "Dobby", "Jacquards"].map((c) => (
+                                                <span key={c} className="font-mono text-[10px] uppercase tracking-wide bg-white border border-[#e4ddd4] text-cont px-3 py-1 rounded">{c}</span>
+                                            ))}
+                                        </div>
+                                    </div>
+                                </div>
+
+                                {/* Capacity & finishes */}
+                                <div className="bg-dark rounded-2xl p-7">
+                                    <div className="font-mono text-[10px] uppercase tracking-widest text-gold mb-5">Production Capacity & Finishes</div>
+                                    <div className="grid grid-cols-2 gap-5">
+                                        <div>
+                                            <div className="font-yeseva text-gold text-3xl">8,000</div>
+                                            <div className="font-pop text-[11px] text-[#888] mt-0.5">Metres per day</div>
+                                        </div>
+                                        <div>
+                                            <div className="font-yeseva text-gold text-3xl">200+</div>
+                                            <div className="font-pop text-[11px] text-[#888] mt-0.5">Employees</div>
+                                        </div>
+                                    </div>
+                                    <div className="mt-5 pt-5 border-t border-white/10">
+                                        <div className="font-mono text-[10px] uppercase tracking-widest text-[#666] mb-2">Available Finishes</div>
+                                        <p className="font-pop text-sm text-[#a09890]">Natural to Extra Soft — across various fabric types and constructions.</p>
+                                    </div>
+                                </div>
+
+                            </div>
+                        </FadeUp>
+                    </div>
+                </Wrapper>
+            </Section>
+
+            {/* ── 10. PARALLAX BAND ── */}
+            <ParallaxBand
+                src="/images/banner/our_legacy_02.png"
+                alt="Titico fabric — woven in India"
+            />
+
+            {/* ── 11. CTA ── */}
+            <Section className="bg-cream">
+                <Wrapper className="lg:py-12 py-10">
                     <FadeUp>
                         <div className="flex flex-col lg:flex-row items-center justify-between gap-8">
                             <div>
-                                <h2 className="font-yeseva text-dark text-3xl lg:text-4xl mb-2">Continue the journey</h2>
-                                <p className="font-pop font-light text-cont text-base">See the craft behind the cloth, or explore our collections.</p>
+                                <h2 className="font-yeseva text-dark text-3xl lg:text-4xl mb-2">Explore what we make</h2>
+                                <p className="font-pop font-light text-cont text-base">See our collections or get in touch to begin a conversation.</p>
                             </div>
                             <div className="flex items-center gap-3 shrink-0">
                                 <button className="font-mono text-[11px] font-semibold tracking-wide uppercase px-6 py-3.5 bg-dark text-cream rounded hover:bg-[#2e2b26] transition-colors duration-200">
-                                    The Craft
+                                    Collections
                                 </button>
                                 <button className="font-mono text-[11px] font-semibold tracking-wide uppercase px-6 py-3.5 border border-dark text-dark rounded hover:bg-dark hover:text-cream transition-all duration-200">
-                                    Collections
+                                    Contact Us
                                 </button>
                             </div>
                         </div>
