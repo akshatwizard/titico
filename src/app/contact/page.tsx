@@ -84,22 +84,22 @@ export default function ContactPage() {
                                     {[
                                         {
                                             label: "Export Inquiries",
-                                            value: "export@titicotextiles.com",
+                                            value: "info@titicoexports.com",
                                             icon: "✉",
                                         },
                                         {
                                             label: "WhatsApp",
-                                            value: "+91 98000 00000",
+                                            value: "+91 95549 54002",
                                             icon: "📱",
                                         },
                                         {
                                             label: "Office",
-                                            value: "+91 542 000 0000",
+                                            value: "+91-542-2401608",
                                             icon: "☎",
                                         },
                                         {
                                             label: "Working Hours",
-                                            value: "Mon–Sat, 9:30 AM – 6:30 PM IST",
+                                            value: "Mon–Sat, 10:00 AM to 7:00 PM IST",
                                             icon: "🕘",
                                         },
                                     ].map((item) => (
