@@ -59,7 +59,7 @@ export default function Footer() {
                                 <p className='text-sm leading-6 text-zinc-400 max-w-xs'>
                                     Varanasi, Uttar Pradesh, India
                                     <br />
-                                    export@titico.com
+                                    info@titicoexports.com
                                 </p>
                             </div>
                         </AnimatedDiv>
