@@ -67,13 +67,14 @@ export default function Navbar() {
                 <nav className={`w-full max-w-7xl mx-auto flex justify-between items-center transition-all duration-300 ease-in-out ${scrolled ? "h-16" : "h-22"}`}>
 
                     {/* Logo */}
-                    <Link href="/" className="flex items-center gap-3 shrink-0">
+                    <Link href="/" className="relative flex items-center gap-3 shrink-0">
                         <Image
-                            src={"/images/logo/logo.png"}
-                            width={150}
-                            height={64}
+                            src={"/images/logo/new-logo.png"}
+                            width={500}
+                            height={500}
                             alt="Titico Textiles"
-                            className={`${scrolled ? "w-12" : "w-16"} h-auto transition-all duration-300 ease-in-out`}
+                            className={`${scrolled ? "h-10" : "h-8"} w-auto transition-all duration-300 ease-in-out`}
+                            priority
                         />
                     </Link>
 
