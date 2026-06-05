@@ -7,6 +7,8 @@ import Wrapper from '@/src/components/ui/wrapper';
 import { timeline } from '@/src/constant/legacy';
 import { FadeUp } from '@/src/lib/fade_up';
 
+const yearsInBusiness = new Date().getFullYear() - 1978;
+
 /* ─────────────────────────────────────────
    PARALLAX HERO
    Image active · Video commented & ready to swap
@@ -128,7 +130,6 @@ function ParallaxBand({ src, alt, children }: { src: string; alt: string; childr
    PAGE
 ───────────────────────────────────────── */
 export default function LegacyPage() {
-   const yearsInBusiness = new Date().getFullYear() - 1978;
 
     return (
         <main>
@@ -188,7 +189,7 @@ export default function LegacyPage() {
                                     {[
                                         { val: "$25M+", lbl: "Net worth" },
                                         { val: "200+", lbl: "Employees" },
-                                        { val: "${yearsInBusiness}+", lbl: "Years of export" },
+                                        { val: `${yearsInBusiness}+`, lbl: "Years of export" },
                                     ].map((s) => (
                                         <div key={s.lbl}>
                                             <div className="font-yeseva text-2xl text-dark">{s.val}</div>
