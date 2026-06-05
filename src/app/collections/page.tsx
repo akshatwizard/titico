@@ -1,6 +1,6 @@
 "use client";
 import { motion, useScroll, useTransform } from "motion/react";
-import { useRef, useState, useCallback, useEffect } from "react";
+import { useRef, useState, useCallback, useEffect, Suspense } from "react";
 import Image from "next/image";
 import useEmblaCarousel from "embla-carousel-react";
 import Section from "@/src/components/ui/section";
