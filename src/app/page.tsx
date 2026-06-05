@@ -13,6 +13,23 @@ import Hero from "../components/hero";
 import View from "../components/view";
 import WhyUs from "../components/why_us";
 
+// ADD this before the default export
+import type { Metadata } from "next";
+
+export const metadata: Metadata = {
+  title: "Premium Silk & Fabric Exporters from Varanasi, India",
+  description:
+    "Titico Textiles manufactures and exports jacquard, linen, mulberry silk, tussar, polyester and embroidery fabrics to 20+ countries. Est. 1978, Varanasi.",
+  openGraph: {
+    title: "Titico Textiles | Premium Fabric Exporters, Varanasi",
+    description:
+      "Manufacturer and exporter of premium silk, linen, jacquard and tussar fabrics from Varanasi, India. 45+ years of textile excellence.",
+    url: "https://www.titicoexports.com",
+  },
+  alternates: {
+    canonical: "https://www.titicoexports.com",
+  },
+};
 export default function Home() {
   return (
     <main className="z-20">
