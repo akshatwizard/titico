@@ -219,7 +219,7 @@ function ProductCard({ product }: { product: Product }) {
                 </div>
 
                 {/* Gradient scrim at bottom of image */}
-                <div className="absolute inset-x-0 bottom-0 h-16 bg-linear-to-t from-black to-transparent pointer-events-none" />
+                {/* <div className="absolute inset-x-0 bottom-0 h-16 bg-linear-to-t from-black to-transparent pointer-events-none" /> */)
             </div>
 
             {/* ── Body ── */}
