@@ -87,7 +87,7 @@ export default function Ads() {
                                     {ad.desc}
                                 </p>
                                 <Link
-                                    href="/#"
+                                    href="/collections"
                                     className="inline-flex items-center gap-2 w-fit font-mono text-[10px] font-bold tracking-[.12em] uppercase text-dark bg-gold px-5 py-2.5 rounded-md hover:opacity-85 transition-opacity duration-200 mt-1"
                                 >
                                     {ad.ctaName} <ArrowRight size={12} />
