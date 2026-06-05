@@ -3,7 +3,7 @@ import Wrapper from "./ui/wrapper";
 import Image from "next/image";
 import Link from "next/link";
 import { ArrowRight, ShieldCheck } from "lucide-react";
-
+const yearsInBusiness = new Date().getFullYear() - 1978;
 export default function View() {
     return (
         <Section className="bg-cream">
@@ -69,7 +69,7 @@ export default function View() {
                                 className="font-play italic text-xs text-gold tracking-wide"
                                 style={{ writingMode: "vertical-rl" }}
                             >
-                                1978 – 2026
+                                1978 – {new Date().getFullYear()}
                             </span>
                         </div>
                         <div className="w-7 h-7 rounded-full bg-dark flex items-center justify-center my-2 shrink-0">
@@ -93,7 +93,7 @@ export default function View() {
 
                         <div className="flex items-center gap-2 mt-4">
                             <span className="font-play italic text-[11px] text-gold">
-                                2026 ·
+                                {new Date().getFullYear()} ·
                             </span>
                             <span className="text-xs font-semibold tracking-[0.14em] uppercase text-dark">
                                 Now
@@ -110,7 +110,7 @@ export default function View() {
                 {/* ── Stats bar ── */}
                 <div className="grid grid-cols-3 mt-12 rounded-xl overflow-hidden border border-[#e4ddd4] divide-x divide-[#e4ddd4]">
                     {[
-                        { num: "45", suffix: "+", label: "Years of craft" },
+                        { num: `${yearsInBusiness}`, suffix: "+", label: "Years of craft" },
                         { num: "4", suffix: "th", label: "Generation weavers" },
                         { num: "500", suffix: "+", label: "Fabric SKUs" },
                     ].map((s) => (
