@@ -244,6 +244,9 @@ function ProductCard({ product }: { product: Product }) {
                 {/* Divider */}
                 <div className="w-8 h-px bg-gold mb-3" />
 
+                <p className="font-mono text-[10px] text-gold bg-[#faf5ec] border border-[#ede3c8] px-2.5 py-1 rounded-full w-fit mb-3">
+                    {product.gsm}
+                </p>
                 {/* Description — collapsible */}
                 <p className={`font-pop font-light text-[#666] text-[13px] leading-relaxed mb-3 transition-all duration-300 ${!expanded ? "line-clamp-2" : ""}`}>
                     {product.description}
