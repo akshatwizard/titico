@@ -5,6 +5,7 @@ interface Data {
     content?: string
     rating?: number
     link?: string
+    gsm?: string
 }
 
 export const data: Data[] = [
@@ -12,84 +13,84 @@ export const data: Data[] = [
         src: "/images/fabric/img-1.jpg",
         name: "Jacquard Fabrics",
         category: "Jacquard",
-        content: "Soft, breathable, and durable fabrics suitable for everyday textile applications.",
+        content: "Ornate woven patterns with soft texture, breathability and durability. GSM: 120–180.",
         rating: 4.5
     },
     {
         src: "/images/fabric/img-2.jpg",
         name: "Linen",
         category: "Linen",
-        content: "Natural textured fabrics with an elegant finish for modern interiors and apparel.",
+        content: "Natural textured fabric with elegant finish for interiors and apparel. GSM: 100–160.",
         rating: 4
     },
     {
         src: "/images/fabric/img-3.jpg",
         name: "Linen Cotton",
         category: "Linen",
-        content: "Smooth and luxurious fabrics known for their rich shine and premium feel.",
+        content: "Breathable linen-cotton blend with smooth finish and premium drape. GSM: 110–170.",
         rating: 4
     },
     {
         src: "/images/fabric/img-4.jpg",
         name: "Mulberry",
         category: "Mulberry",
-        content: "Designer woven fabrics featuring artistic patterns and timeless traditional appeal.",
+        content: "Pure Mulberry silk with rich lustre and artistic woven patterns. GSM: 60–120.",
         rating: 4
     },
     {
         src: "/images/fabric/img-5.jpg",
         name: "Mulberry Cotton",
         category: "Mulberry",
-        content: "Rich textured fabrics with a durable woven finish, ideal for upholstery and premium collections.",
+        content: "Mulberry silk-cotton blend with durable woven finish and rich texture. GSM: 90–150.",
         rating: 4
     },
     {
         src: "/images/fabric/img-6.jpg",
         name: "Mulberry Polyester",
         category: "Technical",
-        content: "Classic zig-zag patterned fabrics offering a sophisticated and timeless woven look.",
+        content: "Mulberry-polyester blend with sophisticated look and easy-care properties. GSM: 80–130.",
         rating: 4
     },
     {
         src: "/images/fabric/img-7.jpg",
         name: "Polyester",
         category: "Polyester",
-        content: "Classic zig-zag patterned fabrics offering a sophisticated and timeless woven look.",
+        content: "Durable polyester with lasting colour retention for fashion and furnishing. GSM: 90–160.",
         rating: 4
     },
     {
         src: "/images/fabric/img-8.jpg",
         name: "Tussar Mulberry Polyester",
         category: "Polyester",
-        content: "Classic zig-zag patterned fabrics offering a sophisticated and timeless woven look.",
+        content: "Triple-blend of Tussar, Mulberry silk and polyester with elegant drape. GSM: 80–140.",
         rating: 4
     },
     {
         src: "/images/fabric/img-9.jpg",
         name: "Tussar",
         category: "Tussar",
-        content: "Classic zig-zag patterned fabrics offering a sophisticated and timeless woven look.",
+        content: "Pure Tussar silk with earthy tone, raw grain finish and organic character. GSM: 60–110.",
         rating: 4
     },
     {
         src: "/images/fabric/img-10.jpg",
         name: "Tussar Mulberry",
         category: "Tussar",
-        content: "Classic zig-zag patterned fabrics offering a sophisticated and timeless woven look.",
+        content: "Tussar-Mulberry blend combining raw texture with lustrous Mulberry softness. GSM: 70–120.",
         rating: 4
     },
     {
         src: "/images/fabric/img-11.jpg",
         name: "Cotton Polyester",
         category: "Tussar",
-        content: "Classic zig-zag patterned fabrics offering a sophisticated and timeless woven look.",
+        content: "Cotton-polyester blend with breathability, wrinkle-resistance and everyday comfort. GSM: 100–180.",
         rating: 4
     },
     {
         src: "/images/fabric/img-12.jpg",
         name: "Embroidery",
         category: "Embroidery",
-        content: "Classic zig-zag patterned fabrics offering a sophisticated and timeless woven look.",
-        rating: 4
+        content: "Intricate handcrafted threadwork on base fabric for couture and ethnic wear. GSM: 150–250.",
+        rating: 4.5
     },
 ]
