@@ -2,6 +2,7 @@
 import { motion, useScroll, useTransform } from "motion/react";
 import { useRef } from "react";
 import Image from 'next/image';
+import Link from 'next/link';
 import Section from '@/src/components/ui/section';
 import Wrapper from '@/src/components/ui/wrapper';
 import { timeline } from '@/src/constant/legacy';
