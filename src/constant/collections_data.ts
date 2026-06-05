@@ -18,6 +18,7 @@ export interface Product {
     category: Category;
     tag: string;
     description: string;
+    gsm: string;
     img: string;
     images: string[];
     origin: string;
@@ -34,13 +35,14 @@ export const products: Product[] = [
         category: "Jacquard",
         tag: "Intricate Weave",
         description:
-            "Soft, breathable, and durable Jacquard fabrics featuring ornate woven patterns suitable for premium fashion and furnishing applications.",
+            "Soft, breathable Jacquard fabrics woven on dobby and jacquard looms with ornate raised patterns. Available in plain, dobby and multi-colour jacquard constructions with excellent dimensional stability.",
+        gsm: "120–180 GSM",
         img: "/images/fabric/img-1.jpg",
         images: ["/images/fabric/img-1.jpg"],
         origin: "Varanasi, UP",
         useCase: ["Soft Texture", "Breathable", "Durable Quality"],
         highlight:
-            "Ideal for fashion wear, upholstery accents, and premium designer collections.",
+            "Width: 44–58 inches. Composition: Cotton / Viscose / Polyester blends. Suitable for fashion wear, upholstery accents, and premium designer collections.",
         rating: 4.5,
     },
     {
@@ -50,13 +52,14 @@ export const products: Product[] = [
         category: "Linen",
         tag: "Classic Appeal",
         description:
-            "Natural textured fabrics with an elegant finish for modern interiors and apparel. Lightweight and breathable for all-season comfort.",
+            "Pure natural linen fabric with characteristic slub texture and elegant matte finish. High moisture absorbency and natural temperature regulation make it ideal for all-season use in apparel and interiors.",
+        gsm: "100–160 GSM",
         img: "/images/fabric/img-2.jpg",
         images: ["/images/fabric/img-2.jpg"],
         origin: "Varanasi, UP",
         useCase: ["Natural Texture", "Lightweight", "Classic Appeal"],
         highlight:
-            "Suitable for apparel, curtains, upholstery, and premium lifestyle collections.",
+            "Width: 44–58 inches. Composition: 100% Linen. Available finishes: Natural, Soft, Stone-washed. Suitable for apparel, curtains, upholstery, and premium lifestyle collections.",
         rating: 4,
     },
     {
@@ -66,13 +69,14 @@ export const products: Product[] = [
         category: "Linen",
         tag: "Blended Comfort",
         description:
-            "Smooth and luxurious linen-cotton blend known for its rich texture, breathability, and premium feel for modern fashion.",
+            "Premium linen-cotton blend combining linen's natural texture with cotton's softness. Offers improved drapability over pure linen with reduced creasing and superior breathability for year-round comfort.",
+        gsm: "110–170 GSM",
         img: "/images/fabric/img-3.jpg",
         images: ["/images/fabric/img-3.jpg"],
         origin: "Varanasi & Gujarat",
         useCase: ["Smooth Finish", "Breathable", "Premium Feel"],
         highlight:
-            "Ideal for garments, casual wear, home textiles, and lightweight applications.",
+            "Width: 44–58 inches. Composition: 55% Linen / 45% Cotton. Ideal for garments, casual wear, home textiles, and lightweight applications.",
         rating: 4,
     },
     {
@@ -82,13 +86,14 @@ export const products: Product[] = [
         category: "Mulberry",
         tag: "Luxury Finish",
         description:
-            "Designer woven Mulberry silk fabrics featuring artistic patterns and timeless traditional appeal with a lustrous sheen.",
+            "Grade A pure Mulberry silk woven with traditional Varanasi craftsmanship. Features a natural protein fibre structure delivering unmatched lustre, hypoallergenic properties, and exceptional drape.",
+        gsm: "60–120 GSM",
         img: "/images/fabric/img-4.jpg",
         images: ["/images/fabric/img-4.jpg"],
         origin: "Varanasi, UP",
         useCase: ["Unique Patterns", "Rich Lustre", "Luxury Appeal"],
         highlight:
-            "Ideal for fashion garments, statement pieces, and decorative textile applications.",
+            "Width: 44–54 inches. Composition: 100% Mulberry Silk. Momme range: 8–30mm. Ideal for fashion garments, statement pieces, and decorative textile applications.",
         rating: 4,
     },
     {
@@ -98,13 +103,14 @@ export const products: Product[] = [
         category: "Mulberry",
         tag: "Durable Luxury",
         description:
-            "Rich textured fabrics combining Mulberry silk with cotton for a durable woven finish, ideal for upholstery and premium collections.",
+            "Engineered blend of Mulberry silk and combed cotton yarns producing a fabric that retains silk's natural sheen while gaining cotton's structural durability. Excellent for high-wash-cycle applications.",
+        gsm: "90–150 GSM",
         img: "/images/fabric/img-5.jpg",
         images: ["/images/fabric/img-5.jpg"],
         origin: "Varanasi, UP",
         useCase: ["Rich Texture", "Durable Weave", "Premium Finish"],
         highlight:
-            "Suitable for ethnic wear, fashion garments, and elegant furnishing fabrics.",
+            "Width: 44–58 inches. Composition: 60% Mulberry Silk / 40% Cotton. Suitable for ethnic wear, fashion garments, and elegant furnishing fabrics.",
         rating: 4,
     },
     {
@@ -114,13 +120,14 @@ export const products: Product[] = [
         category: "Technical",
         tag: "Easy Maintenance",
         description:
-            "Classic patterned Mulberry-polyester blend offering a sophisticated woven look with easy care properties for versatile applications.",
+            "Technical blend combining Mulberry silk character with polyester's dimensional stability and easy-care performance. Colour-fast, wrinkle-resistant, and low-shrinkage for demanding commercial use.",
+        gsm: "80–130 GSM",
         img: "/images/fabric/img-6.jpg",
         images: ["/images/fabric/img-6.jpg"],
         origin: "Varanasi, UP",
         useCase: ["Smooth Finish", "Easy Care", "Modern Appeal"],
         highlight:
-            "Suitable for garments, home textiles, upholstery, and modern fabric collections.",
+            "Width: 44–60 inches. Composition: 50% Mulberry Silk / 50% Polyester. Colorfastness: Grade 4–5. Suitable for garments, home textiles, upholstery, and modern fabric collections.",
         rating: 4,
     },
     {
@@ -130,13 +137,14 @@ export const products: Product[] = [
         category: "Polyester",
         tag: "Versatile Quality",
         description:
-            "Durable and versatile polyester fabrics developed for fashion, furnishing, and multi-purpose textile applications with lasting colour retention.",
+            "High-tenacity polyester fabric with excellent abrasion resistance and lasting colour vibrancy. Available in plain, twill, and satin weaves with anti-pilling and anti-static finishes on request.",
+        gsm: "90–160 GSM",
         img: "/images/fabric/img-7.jpg",
         images: ["/images/fabric/img-7.jpg"],
         origin: "Varanasi, UP",
         useCase: ["Smooth Finish", "Durable Quality", "Colour Retention"],
         highlight:
-            "Suitable for garments, home textiles, upholstery, and modern fabric collections.",
+            "Width: 44–60 inches. Composition: 100% Polyester. Tensile strength: 400+ N. Suitable for garments, home textiles, upholstery, and modern fabric collections.",
         rating: 4,
     },
     {
@@ -146,13 +154,14 @@ export const products: Product[] = [
         category: "Polyester",
         tag: "Signature Blend",
         description:
-            "A refined three-way blend of Tussar, Mulberry silk, and polyester delivering a balanced texture with an elegant woven structure.",
+            "A precision-engineered three-way blend of Tussar silk, Mulberry silk, and polyester. Delivers Tussar's raw texture, Mulberry's sheen, and polyester's durability in a single balanced construction.",
+        gsm: "80–140 GSM",
         img: "/images/fabric/img-8.jpg",
         images: ["/images/fabric/img-8.jpg"],
         origin: "Varanasi & Bhagalpur",
         useCase: ["Elegant Drape", "Durable Blend", "Refined Texture"],
         highlight:
-            "Ideal for premium ethnic garments, sarees, and designer fashion collections.",
+            "Width: 44–54 inches. Composition: 40% Tussar / 30% Mulberry Silk / 30% Polyester. Ideal for premium ethnic garments, sarees, and designer fashion collections.",
         rating: 4,
     },
     {
@@ -162,13 +171,14 @@ export const products: Product[] = [
         category: "Tussar",
         tag: "Earthy Elegance",
         description:
-            "Naturally textured Tussar silk fabrics with a distinctive earthy tone and raw grain finish prized for their organic character.",
+            "Wild Tussar silk sourced from Bhagalpur featuring a natural honey-gold tone, irregular slub texture, and characteristic crisp hand-feel. Naturally hypoallergenic with excellent moisture management.",
+        gsm: "60–110 GSM",
         img: "/images/fabric/img-9.jpg",
         images: ["/images/fabric/img-9.jpg"],
         origin: "Bhagalpur, Bihar",
         useCase: ["Natural Grain", "Earthy Tone", "Organic Feel"],
         highlight:
-            "Ideal for ethnic wear, sarees, kurtas, and artisan textile collections.",
+            "Width: 44–54 inches. Composition: 100% Tussar Silk. Natural undyed variants available. Ideal for ethnic wear, sarees, kurtas, and artisan textile collections.",
         rating: 4,
     },
     {
@@ -178,13 +188,14 @@ export const products: Product[] = [
         category: "Tussar",
         tag: "Heritage Craft",
         description:
-            "Blended Tussar and Mulberry silk combining the raw character of Tussar with the lustrous softness of Mulberry for a distinguished finish.",
+            "Artisan-woven blend of wild Tussar and cultivated Mulberry silk. Tussar contributes rustic texture and body while Mulberry adds refined sheen and smoothness — a hallmark of Bhagalpur-Varanasi weaving heritage.",
+        gsm: "70–120 GSM",
         img: "/images/fabric/img-10.jpg",
         images: ["/images/fabric/img-10.jpg"],
         origin: "Varanasi & Bhagalpur",
         useCase: ["Heritage Weave", "Rich Texture", "Natural Lustre"],
         highlight:
-            "Suitable for sarees, dupattas, fashion garments, and premium home textiles.",
+            "Width: 44–54 inches. Composition: 50% Tussar Silk / 50% Mulberry Silk. Suitable for sarees, dupattas, fashion garments, and premium home textiles.",
         rating: 4,
     },
     {
@@ -194,13 +205,14 @@ export const products: Product[] = [
         category: "Tussar",
         tag: "Everyday Comfort",
         description:
-            "A practical yet elegant cotton-polyester blend offering the comfort of cotton with the durability and wrinkle-resistance of polyester.",
+            "Optimised cotton-polyester blend engineered for performance and comfort. Cotton provides breathability and softness while polyester adds dimensional stability, wrinkle resistance, and shape retention.",
+        gsm: "100–180 GSM",
         img: "/images/fabric/img-11.jpg",
         images: ["/images/fabric/img-11.jpg"],
         origin: "Varanasi & Gujarat",
         useCase: ["Breathable", "Wrinkle Resistant", "Everyday Wear"],
         highlight:
-            "Designed for casual garments, uniforms, home textiles, and modern lifestyle fabrics.",
+            "Width: 44–60 inches. Composition: 60% Cotton / 40% Polyester. Shrinkage: <3%. Designed for casual garments, uniforms, home textiles, and modern lifestyle fabrics.",
         rating: 4,
     },
     {
@@ -210,13 +222,14 @@ export const products: Product[] = [
         category: "Embroidery",
         tag: "Handcrafted Detail",
         description:
-            "Exquisite embroidery fabrics featuring intricate handcrafted threadwork, ideal for couture, ethnic wear, and statement fashion pieces.",
+            "Base fabric with intricate hand and machine embroidery using silk, metallic, and cotton threads. Available on net, organza, georgette, and velvet base fabrics with varied stitch densities.",
+        gsm: "150–250 GSM",
         img: "/images/fabric/img-12.jpg",
         images: ["/images/fabric/img-12.jpg"],
         origin: "Varanasi, UP",
         useCase: ["Intricate Threadwork", "Artisan Craft", "Statement Fabric"],
         highlight:
-            "Perfect for bridal wear, couture collections, ethnic garments, and luxury décor applications.",
+            "Width: 44–54 inches. Thread: Silk / Metallic / Cotton. Base: Georgette / Net / Velvet. Perfect for bridal wear, couture collections, ethnic garments, and luxury décor applications.",
         rating: 4.5,
     },
 ];
