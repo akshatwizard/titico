@@ -14,6 +14,8 @@ import { banner } from '../constant/hero_banner';
 
 
 export default function Hero() {
+    const yearsInBusiness = new Date().getFullYear() - 1978;
+
     const [api, setApi] = useState<CarouselApi>()
     const plugin = useRef(Autoplay({ delay: 4000, stopOnInteraction: false, stopOnMouseEnter: true }))
     const [activeIndex, setActiveIndex] = useState(0)
@@ -77,7 +79,7 @@ export default function Hero() {
                         {/* Stats */}
                         <div className='flex items-center gap-6 pt-8 border-t border-[#e4ddd4]'>
                             {[
-                                { val: '45+', lbl: 'Years in trade' },
+                                { val: `${yearsInBusiness}+`, lbl: 'Years in trade' },
                                 { val: '20+', lbl: 'Export countries' },
                                 { val: '500+', lbl: 'Fabric SKUs' },
                             ].map((s, i) => (
