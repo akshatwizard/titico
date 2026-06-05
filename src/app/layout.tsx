@@ -22,10 +22,36 @@ const playfair = Playfair({
 });
 
 export const metadata: Metadata = {
-  title: "Titico Textiles",
-  description: "Titico Textiles is one of the largest exporter of silk fabric in varanasi",
+  title: {
+    default: "Titico Textiles | Premium Silk & Fabric Exporters, Varanasi",
+    template: "%s | Titico Textiles",
+  },
+  description:
+    "Titico Textiles is a leading manufacturer and exporter of premium silk, linen, jacquard, tussar and embroidery fabrics from Varanasi, India. Exporting to 20+ countries since 1978.",
+  metadataBase: new URL("https://www.titicoexports.com"),
+  openGraph: {
+    siteName: "Titico Textiles",
+    type: "website",
+    locale: "en_IN",
+    url: "https://www.titicoexports.com",
+    images: [
+      {
+        url: "/images/logo/new-logo.png",
+        width: 1200,
+        height: 630,
+        alt: "Titico Textiles — Premium Fabric Exporters, Varanasi",
+      },
+    ],
+  },
+  twitter: {
+    card: "summary_large_image",
+    site: "@titicoexports",
+  },
+  robots: {
+    index: true,
+    follow: true,
+  },
 };
-
 export default function RootLayout({
   children,
 }: Readonly<{
