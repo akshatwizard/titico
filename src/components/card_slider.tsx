@@ -123,7 +123,7 @@ export default function CardSlider() {
             {/* ── See all CTA ── */}
             <div className="flex justify-center mt-10 px-6">
                 <Link
-                    href="/#"
+                    href="/collections"
                     className="font-mono text-xs font-semibold tracking-widest uppercase px-6 py-3 border border-dark/20 text-dark rounded hover:bg-dark hover:text-cream hover:border-dark transition-all duration-200 flex items-center gap-2.5"
                 >
                     <ArrowRight size={12} />
