@@ -95,18 +95,24 @@ export default function CardSlider() {
                                 {item.category}
                             </span>
 
-                            <div className="font-play text-[#f0ede8] text-[15px] font-medium leading-tight mb-1.5">
+                            <div className="font-play text-[#f0ede8] text-[15px] font-medium leading-tight mb-2">
                                 {item.name}
                             </div>
                             {item.gsm && (
-                                <span className="inline-block font-mono text-[8px] font-semibold tracking-[0.1em] uppercase text-gold bg-[rgba(200,163,90,0.15)] border border-[rgba(200,163,90,0.35)] rounded px-2 py-0.5 mb-2">
-                                    {item.gsm}
-                                </span>
+                                <div className="flex items-center gap-1.5 mb-3">
+                                    <div className="w-3 h-px bg-gold/60" />
+                                    <span className="font-mono text-[10px] font-bold tracking-[0.12em] uppercase text-gold">
+                                        {item.gsm}
+                                    </span>
+                                </div>
                             )}
+
+                            {/*
                             <div className="font-pop font-light text-[rgba(240,237,232,0.6)] text-[11px] leading-snug mb-3">
                                 {item.content}
                             </div>
-
+                            */}
+                            
                             {item.rating && (
                                 <div className="flex items-center justify-between">
                                     <StarRating rating={item.rating} />
