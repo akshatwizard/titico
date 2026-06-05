@@ -9,6 +9,7 @@ import {
 } from "@/src/components/ui/carousel"
 import Autoplay from "embla-carousel-autoplay";
 import Image from 'next/image';
+import Link from 'next/link';    
 import { banner } from '../constant/hero_banner';
 
 
@@ -64,13 +65,13 @@ export default function Hero() {
 
                         {/* CTAs */}
                         <div className='flex items-center gap-3 mb-10'>
-                            <button className='font-mono text-[11px] font-semibold tracking-wide uppercase px-6 py-3.5 bg-dark text-cream rounded hover:bg-[#2e2b26] transition-colors duration-200'>
-                                Explore Collections
-                            </button>
-                            <button className='font-mono text-[11px] font-semibold tracking-wide uppercase px-5 py-3.5 border border-dark text-dark rounded hover:bg-dark hover:text-cream transition-all duration-200 flex items-center gap-2'>
-                                <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="10" /><polygon points="10 8 16 12 10 16 10 8" /></svg>
-                                Our Legacy
-                            </button>
+  <Link href="/collections" className='font-mono text-[11px] font-semibold tracking-wide uppercase px-6 py-3.5 bg-dark text-cream rounded hover:bg-[#2e2b26] transition-colors duration-200'>
+    Explore Collections
+</Link>
+<Link href="/legacy" className='font-mono text-[11px] font-semibold tracking-wide uppercase px-5 py-3.5 border border-dark text-dark rounded hover:bg-dark hover:text-cream transition-all duration-200 flex items-center gap-2'>
+    <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="10" /><polygon points="10 8 16 12 10 16 10 8" /></svg>
+    Our Legacy
+</Link>
                         </div>
 
                         {/* Stats */}
