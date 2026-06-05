@@ -178,7 +178,7 @@ export default function Navbar() {
                 {/* Drawer footer CTA */}
                 <div className="p-4 border-t border-white/8">
                     <Link
-                        href="/#"
+                        href="/contact"
                         onClick={handleMenuToggle}
                         className="w-full font-mono text-[10px] font-semibold tracking-widest uppercase py-3 bg-gold text-dark rounded flex items-center justify-center gap-2 hover:bg-[#d4b06a] transition-colors duration-200"
                     >
