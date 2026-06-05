@@ -6,6 +6,7 @@ import useEmblaCarousel from "embla-carousel-react";
 import Section from "@/src/components/ui/section";
 import Wrapper from "@/src/components/ui/wrapper";
 import { FadeUp } from "@/src/lib/fade_up";
+import { useSearchParams } from "next/navigation";
 import {
     categories,
     Category,
@@ -311,7 +312,9 @@ function ProductCard({ product }: { product: Product }) {
 }
 
 export default function CollectionsPage() {
-    const [active, setActive] = useState<Category>("All");
+    const searchParams = useSearchParams();
+    const initialFilter = (searchParams.get("filter") as Category) ?? "All";
+    const [active, setActive] = useState<Category>(initialFilter);
 
     const filtered =
         active === "All" ? products : products.filter((p) => p.category === active);
