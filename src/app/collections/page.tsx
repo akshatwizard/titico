@@ -194,7 +194,7 @@ function ProductCard({ product }: { product: Product }) {
             {/* ── Body ── */}
             <div className="px-5 pt-3 pb-5 flex flex-col flex-1">
 
-// REPLACE WITH — keep tag, remove rating
+
 <div className="flex items-center justify-end mb-2.5">
     <span className="font-mono text-[8px] uppercase tracking-[0.13em] text-gold bg-[#faf5ec] border border-[#ede3c8] px-2.5 py-0.5 rounded-full">
         {product.tag}
