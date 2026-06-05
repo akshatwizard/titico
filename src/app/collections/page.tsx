@@ -82,37 +82,6 @@ function ParallaxHero() {
     );
 }
 
-function StarRating({ rating }: { rating: number }) {
-    return (
-        <div className="flex items-center gap-0.5">
-            {[1, 2, 3, 4, 5].map((star) => {
-                const filled = rating >= star;
-                const half = !filled && rating >= star - 0.5;
-                return (
-                    <svg
-                        key={star}
-                        width="11"
-                        height="11"
-                        viewBox="0 0 24 24"
-                        className="shrink-0"
-                    >
-                        <defs>
-                            <linearGradient id={`half-${star}`}>
-                                <stop offset="50%" stopColor="#C69B4A" />
-                                <stop offset="50%" stopColor="#D8CFC4" />
-                            </linearGradient>
-                        </defs>
-                        <polygon
-                            points="12,2 15.09,8.26 22,9.27 17,14.14 18.18,21.02 12,17.77 5.82,21.02 7,14.14 2,9.27 8.91,8.26"
-                            fill={filled ? "#C69B4A" : half ? `url(#half-${star})` : "#D8CFC4"}
-                        />
-                    </svg>
-                );
-            })}
-            <span className="font-mono text-[9px] text-[#999] ml-1">{rating.toFixed(1)}</span>
-        </div>
-    );
-}
 
 function ImageCarousel({ images, alt }: { images: string[]; alt: string }) {
     const [emblaRef, emblaApi] = useEmblaCarousel({ loop: true, dragFree: false });
@@ -225,13 +194,12 @@ function ProductCard({ product }: { product: Product }) {
             {/* ── Body ── */}
             <div className="px-5 pt-3 pb-5 flex flex-col flex-1">
 
-                {/* Rating + tag row */}
-                <div className="flex items-center justify-between mb-2.5">
-                    {product.rating && <StarRating rating={product.rating} />}
-                    <span className="font-mono text-[8px] uppercase tracking-[0.13em] text-gold bg-[#faf5ec] border border-[#ede3c8] px-2.5 py-0.5 rounded-full">
-                        {product.tag}
-                    </span>
-                </div>
+// REPLACE WITH — keep tag, remove rating
+<div className="flex items-center justify-end mb-2.5">
+    <span className="font-mono text-[8px] uppercase tracking-[0.13em] text-gold bg-[#faf5ec] border border-[#ede3c8] px-2.5 py-0.5 rounded-full">
+        {product.tag}
+    </span>
+</div>
 
                 {/* Name + subtitle */}
                 <h3 className="font-yeseva text-dark text-[1.25rem] leading-snug mb-0.5">
