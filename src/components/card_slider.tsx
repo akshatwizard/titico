@@ -5,25 +5,8 @@ import { EmblaOptionsType } from 'embla-carousel'
 import Card from './card'
 import Image from 'next/image'
 import Link from 'next/link'
-import { Star, StarHalf, ArrowRight } from 'lucide-react'
+import { ArrowRight } from 'lucide-react'
 import { data } from '../constant/product_data'
-
-function StarRating({ rating }: { rating: number }) {
-    const full = Math.floor(rating)
-    const half = rating - full >= 0.25
-    const empty = 5 - full - (half ? 1 : 0)
-    return (
-        <span className="flex items-center gap-0.5">
-            {Array.from({ length: full }).map((_, i) => (
-                <Star key={`f${i}`} size={11} fill="#c8a35a" stroke="none" />
-            ))}
-            {half && <StarHalf size={11} fill="#c8a35a" stroke="none" />}
-            {Array.from({ length: empty }).map((_, i) => (
-                <Star key={`e${i}`} size={11} fill="rgba(200,163,90,0.25)" stroke="none" />
-            ))}
-        </span>
-    )
-}
 
 export default function CardSlider() {
     const OPTIONS: EmblaOptionsType = { align: 'start', dragFree: true }
@@ -53,21 +36,6 @@ export default function CardSlider() {
                 <span className="font-mono text-[9px] font-semibold tracking-[0.12em] uppercase text-[#888]">
                     Drag to explore
                 </span>
-                {/* Prev/Next wired via embla if needed */}
-                {/* <div className="flex gap-2">
-                    <button
-                        aria-label="Previous"
-                        className="w-8 h-8 rounded border border-dark/20 flex items-center justify-center text-dark hover:bg-dark hover:text-cream transition-colors duration-200"
-                    >
-                        <ArrowRight size={13} className="rotate-180" />
-                    </button>
-                    <button
-                        aria-label="Next"
-                        className="w-8 h-8 rounded bg-dark border border-dark flex items-center justify-center text-cream hover:bg-gold hover:border-gold hover:text-dark transition-colors duration-200"
-                    >
-                        <ArrowRight size={13} />
-                    </button>
-                </div> */}
             </div>
 
             {/* ── Slider ── */}
@@ -90,37 +58,25 @@ export default function CardSlider() {
 
                         {/* Content */}
                         <div className="absolute bottom-0 left-0 right-0 z-20 p-4">
+
                             {/* Category tag */}
                             <span className="inline-block font-mono text-[8px] font-semibold tracking-[0.12em] uppercase text-gold bg-[rgba(200,163,90,0.15)] border border-[rgba(200,163,90,0.35)] rounded px-2 py-0.5 mb-2.5">
                                 {item.category}
                             </span>
 
+                            {/* Name */}
                             <div className="font-play text-[#f0ede8] text-[15px] font-medium leading-tight mb-2">
                                 {item.name}
                             </div>
-                            {item.gsm && (
-                                <div className="flex items-center gap-1.5 mb-3">
-                                    <div className="w-3 h-px bg-gold/60" />
-                                    <span className="font-mono text-[10px] font-bold tracking-[0.12em] uppercase text-gold">
-                                        {item.gsm}
-                                    </span>
-                                </div>
-                            )}
 
-                            {/*
-                            <div className="font-pop font-light text-[rgba(240,237,232,0.6)] text-[11px] leading-snug mb-3">
-                                {item.content}
+                            {/* GSM highlight */}
+                            <div className="flex items-center gap-1.5">
+                                <div className="w-3 h-px bg-gold/60" />
+                                <span className="font-mono text-[10px] font-bold tracking-[0.12em] uppercase text-gold">
+                                    {item.gsm}
+                                </span>
                             </div>
-                            */}
-                            
-                            {item.rating && (
-                                <div className="flex items-center justify-between">
-                                    <StarRating rating={item.rating} />
-                                    <span className="font-mono text-[10px] font-semibold text-[rgba(240,237,232,0.65)]">
-                                        {item.rating.toFixed(1)}
-                                    </span>
-                                </div>
-                            )}
+
                         </div>
 
                         {/* Hover arrow */}
