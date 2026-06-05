@@ -311,119 +311,141 @@ function ProductCard({ product }: { product: Product }) {
     );
 }
 
+// AFTER — split into inner + outer
+
+function CollectionsContent() {
+  const searchParams = useSearchParams();
+  const initialFilter = (searchParams.get("filter") as Category) ?? "All";
+  const [active, setActive] = useState<Category>(initialFilter);
+
+  const filtered =
+    active === "All" ? products : products.filter((p) => p.category === active);
+
+  return (
+    <>
+      {/* ── FILTER + GRID ── */}
+      <Section className="bg-[#f3ede4]">
+        <Wrapper>
+          {/* Filter pills */}
+          <FadeUp>
+            <div className="flex flex-wrap gap-2 mb-8">
+              {categories.map((cat) => (
+                <button
+                  key={cat}
+                  onClick={() => setActive(cat)}
+                  className={`font-mono text-[10px] font-semibold tracking-widest uppercase px-4 py-2 rounded-full transition-all duration-200 ${
+                    active === cat
+                      ? "bg-dark text-cream shadow-sm"
+                      : "bg-white text-[#6b6258] border border-[#ddd5c5] hover:border-dark hover:text-dark"
+                  }`}
+                >
+                  {cat}
+                </button>
+              ))}
+            </div>
+          </FadeUp>
+
+          {/* Grid */}
+          <motion.div
+            layout
+            className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6"
+          >
+            {filtered.map((product, i) => (
+              <motion.div
+                key={product.id}
+                layout
+                initial={{ opacity: 0, y: 24 }}
+                animate={{ opacity: 1, y: 0 }}
+                exit={{ opacity: 0, y: 12 }}
+                transition={{
+                  duration: 0.5,
+                  ease: [0.22, 1, 0.36, 1],
+                  delay: i * 0.04,
+                }}
+              >
+                <ProductCard product={product} />
+              </motion.div>
+            ))}
+          </motion.div>
+        </Wrapper>
+      </Section>
+    </>
+  );
+}
+
 export default function CollectionsPage() {
-    const searchParams = useSearchParams();
-    const initialFilter = (searchParams.get("filter") as Category) ?? "All";
-    const [active, setActive] = useState<Category>(initialFilter);
+  return (
+    <main>
+      {/* ── HERO ── */}
+      <ParallaxHero />
 
-    const filtered =
-        active === "All" ? products : products.filter((p) => p.category === active);
+      {/* ── FILTER + GRID — wrapped in Suspense for useSearchParams ── */}
+      <Suspense fallback={
+        <Section className="bg-[#f3ede4]">
+          <Wrapper>
+            <div className="flex justify-center py-20 text-[#999] font-mono text-xs tracking-widest uppercase">
+              Loading collections...
+            </div>
+          </Wrapper>
+        </Section>
+      }>
+        <CollectionsContent />
+      </Suspense>
 
-    return (
-        <main>
-            {/* ── HERO ── */}
-            <ParallaxHero />
-
-            {/* ── FILTER + GRID ── */}
-            <Section className="bg-[#f3ede4]">
-                <Wrapper>
-                    {/* Filter pills */}
-                    <FadeUp>
-                        <div className="flex flex-wrap gap-2 mb-8">
-                            {categories.map((cat) => (
-                                <button
-                                    key={cat}
-                                    onClick={() => setActive(cat)}
-                                    className={`font-mono text-[10px] font-semibold tracking-widest uppercase px-4 py-2 rounded-full transition-all duration-200 ${active === cat
-                                        ? "bg-dark text-cream shadow-sm"
-                                        : "bg-white text-[#6b6258] border border-[#ddd5c5] hover:border-dark hover:text-dark"
-                                        }`}
-                                >
-                                    {cat}
-                                </button> 
-                            ))}
-                        </div>
-                    </FadeUp>
-
-                    {/* Grid */}
-                    <motion.div
-                        layout
-                        className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6"
+      {/* ── CUSTOM ORDERS ── */}
+      <Section className="bg-dark">
+        <Wrapper>
+          <FadeUp>
+            <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-20 items-center">
+              <div>
+                <div className="flex items-center gap-3 mb-5">
+                  <div className="w-7 h-px bg-gold" />
+                  <span className="font-mono text-[10px] font-semibold tracking-[0.14em] uppercase text-gold">
+                    Bespoke Orders
+                  </span>
+                </div>
+                <h2 className="font-yeseva text-cream text-4xl lg:text-5xl leading-[1.15] mb-6">
+                  Don't see your{" "}
+                  <em className="text-gold not-italic">requirement?</em>
+                </h2>
+                <p className="font-pop font-light text-[#b0a898] text-[17px] leading-relaxed mb-6">
+                  We work with fashion houses, interior studios, and export buyers to develop
+                  custom fabrics — specific counts, constructions, colourways, and finishes.
+                  Minimum order quantities are flexible for established relationships.
+                </p>
+                <ul className="space-y-2 mb-8">
+                  {[
+                    "Custom weave construction",
+                    "Brand-matched colourways",
+                    "Private label garment production",
+                    "Sample development in 7–10 days",
+                  ].map((item) => (
+                    <li
+                      key={item}
+                      className="flex items-center gap-3 font-pop text-sm text-[#a09890]"
                     >
-                        {filtered.map((product, i) => (
-                            <motion.div
-                                key={product.id}
-                                layout
-                                initial={{ opacity: 0, y: 24 }}
-                                animate={{ opacity: 1, y: 0 }}
-                                exit={{ opacity: 0, y: 12 }}
-                                transition={{
-                                    duration: 0.5,
-                                    ease: [0.22, 1, 0.36, 1],
-                                    delay: i * 0.04,
-                                }}
-                            >
-                                <ProductCard product={product} />
-                            </motion.div>
-                        ))}
-                    </motion.div>
-                </Wrapper>
-            </Section>
-
-            {/* ── CUSTOM ORDERS ── */}
-            <Section className="bg-dark">
-                <Wrapper>
-                    <FadeUp>
-                        <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-20 items-center">
-                            <div>
-                                <div className="flex items-center gap-3 mb-5">
-                                    <div className="w-7 h-px bg-gold" />
-                                    <span className="font-mono text-[10px] font-semibold tracking-[0.14em] uppercase text-gold">
-                                        Bespoke Orders
-                                    </span>
-                                </div>
-                                <h2 className="font-yeseva text-cream text-4xl lg:text-5xl leading-[1.15] mb-6">
-                                    Don't see your{" "}
-                                    <em className="text-gold not-italic">requirement?</em>
-                                </h2>
-                                <p className="font-pop font-light text-[#b0a898] text-[17px] leading-relaxed mb-6">
-                                    We work with fashion houses, interior studios, and export buyers to develop
-                                    custom fabrics — specific counts, constructions, colourways, and finishes.
-                                    Minimum order quantities are flexible for established relationships.
-                                </p>
-                                <ul className="space-y-2 mb-8">
-                                    {[
-                                        "Custom weave construction",
-                                        "Brand-matched colourways",
-                                        "Private label garment production",
-                                        "Sample development in 7–10 days",
-                                    ].map((item) => (
-                                        <li
-                                            key={item}
-                                            className="flex items-center gap-3 font-pop text-sm text-[#a09890]"
-                                        >
-                                            <div className="w-1.5 h-1.5 rounded-full bg-gold shrink-0" />
-                                            {item}
-                                        </li>
-                                    ))}
-                                </ul>
-                                <button className="font-mono text-[11px] font-semibold tracking-wide uppercase px-6 py-3.5 bg-gold text-dark rounded hover:bg-[#d4ad60] transition-colors duration-200">
-                                    Request a Sample
-                                </button>
-                            </div>
-                            <div className="relative h-80 lg:h-auto lg:aspect-square rounded-2xl overflow-hidden">
-                                <Image
-                                    src="/images/collections/collections.png"
-                                    alt="Fabric sampling at Titico"
-                                    fill
-                                    className="object-cover"
-                                />
-                                <div className="absolute inset-0 bg-linear-to-br from-dark/30 to-transparent" />
-                            </div>
-                        </div>
-                    </FadeUp>
-                </Wrapper>
-            </Section>
-        </main>
-    );
+                      <div className="w-1.5 h-1.5 rounded-full bg-gold shrink-0" />
+                      {item}
+                    </li>
+                  ))}
+                </ul>
+                <button className="font-mono text-[11px] font-semibold tracking-wide uppercase px-6 py-3.5 bg-gold text-dark rounded hover:bg-[#d4ad60] transition-colors duration-200">
+                  Request a Sample
+                </button>
+              </div>
+              <div className="relative h-80 lg:h-auto lg:aspect-square rounded-2xl overflow-hidden">
+                <Image
+                  src="/images/collections/collections.png"
+                  alt="Fabric sampling at Titico"
+                  fill
+                  className="object-cover"
+                />
+                <div className="absolute inset-0 bg-linear-to-br from-dark/30 to-transparent" />
+              </div>
+            </div>
+          </FadeUp>
+        </Wrapper>
+      </Section>
+    </main>
+  );
 }
