@@ -69,7 +69,7 @@ function ParallaxHero() {
                             <em className="text-gold not-italic">Fine Fabrics</em>
                         </h1>
                         <p className="font-pop font-light text-[#c8bfb0] text-lg leading-relaxed max-w-2xl">
-                            Engaged in manufacturing and exporting Fabrics and Made-ups for Home &amp; Fashion for over 43 years — delivering to clients across the world.
+                            Engaged in manufacturing and exporting Fabrics and Made-ups for Home &amp; Fashion for over {yearsInBusiness} years — delivering to clients across the world.
                         </p>
                     </motion.div>
                 </div>
@@ -128,6 +128,8 @@ function ParallaxBand({ src, alt, children }: { src: string; alt: string; childr
    PAGE
 ───────────────────────────────────────── */
 export default function LegacyPage() {
+   const yearsInBusiness = new Date().getFullYear() - 1978;
+
     return (
         <main>
 
@@ -168,11 +170,11 @@ export default function LegacyPage() {
                                     </span>
                                 </div>
                                 <h2 className="font-yeseva text-dark text-4xl lg:text-5xl leading-[1.15] mb-6">
-                                    43 Years of{" "}
+                                    {yearsInBusiness} Years of{" "}
                                     <em className="text-gold not-italic">Manufacturing Excellence</em>
                                 </h2>
                                 <p className="font-pop font-light text-cont text-[17px] leading-relaxed mb-4">
-                                    We are engaged in manufacturing and exporting Fabrics and Made-ups for "Home &amp; Fashion" from the last 43 years, exporting to all over the world.
+                                    We are engaged in manufacturing and exporting Fabrics and Made-ups for "Home &amp; Fashion" from the last {yearsInBusiness} years, exporting to all over the world.
                                 </p>
                                 <p className="font-pop font-light text-cont text-[17px] leading-relaxed mb-6">
                                     The Company's present net worth is about 25 Million Dollars and it employs over 200 persons directly or indirectly. Continuous adoption of new technology has been the watchword of the Company — strengthening its diverse operations across state-of-the-art manufacturing units in Bihar, Karnataka and Uttar Pradesh.
@@ -186,7 +188,7 @@ export default function LegacyPage() {
                                     {[
                                         { val: "$25M+", lbl: "Net worth" },
                                         { val: "200+", lbl: "Employees" },
-                                        { val: "43+", lbl: "Years of export" },
+                                        { val: "${yearsInBusiness}+", lbl: "Years of export" },
                                     ].map((s) => (
                                         <div key={s.lbl}>
                                             <div className="font-yeseva text-2xl text-dark">{s.val}</div>
@@ -618,12 +620,12 @@ export default function LegacyPage() {
                                 <p className="font-pop font-light text-cont text-base">See our collections or get in touch to begin a conversation.</p>
                             </div>
                             <div className="flex items-center gap-3 shrink-0">
-                                <button className="font-mono text-[11px] font-semibold tracking-wide uppercase px-6 py-3.5 bg-dark text-cream rounded hover:bg-[#2e2b26] transition-colors duration-200">
-                                    Collections
-                                </button>
-                                <button className="font-mono text-[11px] font-semibold tracking-wide uppercase px-6 py-3.5 border border-dark text-dark rounded hover:bg-dark hover:text-cream transition-all duration-200">
-                                    Contact Us
-                                </button>
+                               <Link href="/collections" className="font-mono text-[11px] font-semibold tracking-wide uppercase px-6 py-3.5 bg-dark text-cream rounded hover:bg-[#2e2b26] transition-colors duration-200">
+                                     Collections
+                                 </Link>
+                                 <Link href="/contact" className="font-mono text-[11px] font-semibold tracking-wide uppercase px-6 py-3.5 border border-dark text-dark rounded hover:bg-dark hover:text-cream transition-all duration-200">
+                                     Contact Us
+                                 </Link>
                             </div>
                         </div>
                     </FadeUp>
