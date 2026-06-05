@@ -98,6 +98,11 @@ export default function CardSlider() {
                             <div className="font-play text-[#f0ede8] text-[15px] font-medium leading-tight mb-1.5">
                                 {item.name}
                             </div>
+                            {item.gsm && (
+                                <span className="inline-block font-mono text-[8px] font-semibold tracking-[0.1em] uppercase text-gold bg-[rgba(200,163,90,0.15)] border border-[rgba(200,163,90,0.35)] rounded px-2 py-0.5 mb-2">
+                                    {item.gsm}
+                                </span>
+                            )}
                             <div className="font-pop font-light text-[rgba(240,237,232,0.6)] text-[11px] leading-snug mb-3">
                                 {item.content}
                             </div>
