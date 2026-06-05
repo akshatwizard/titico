@@ -16,14 +16,15 @@ export default function Footer() {
     { label: "Contact",     href: "/contact" },
   ]
 
-  const collections = [
-    { label: "Silk",      href: "/collections?filter=mulberry" },
-    { label: "Cotton",    href: "/collections?filter=linen" },
-    { label: "Knitted",   href: "/collections?filter=jacquard" },
-    { label: "Woven",     href: "/collections?filter=jacquard" },
-    { label: "Blended",   href: "/collections?filter=mulberry-polyester" },
-    { label: "Technical", href: "/collections?filter=polyester" },
-  ]
+ const collections = [
+  { label: "Jacquard",   href: "/collections?filter=Jacquard" },
+  { label: "Linen",      href: "/collections?filter=Linen" },
+  { label: "Mulberry",   href: "/collections?filter=Mulberry" },
+  { label: "Technical",  href: "/collections?filter=Technical" },
+  { label: "Polyester",  href: "/collections?filter=Polyester" },
+  { label: "Tussar",     href: "/collections?filter=Tussar" },
+  { label: "Embroidery", href: "/collections?filter=Embroidery" },
+]
 
   return (
     <Section className='bg-dark border-t border-white/10'>
