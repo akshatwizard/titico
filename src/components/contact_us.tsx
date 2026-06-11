@@ -11,17 +11,40 @@ import {
 } from "lucide-react";
 
 import { AnimatePresence, motion } from "motion/react";
-import { useEffect, useRef } from "react";
+import { ChangeEvent, useEffect, useRef, useState } from "react";
 import { useLenisControl } from "../lib/smooth_scroll";
+import axios from "axios"
 
 type Props = {
     open: boolean;
     onClose: () => void;
 };
 
+type Form = {
+    full_name: string;
+    company_name: string;
+    email_address: string;
+    phone_no: string;
+    message: string;
+}
+
+type FormState =
+    | { phase: "idle" }
+    | { phase: "pending" }
+    | { phase: "success" }
+    | { phase: "failed"; reason: string };
+
 export default function ContactUs({ open, onClose }: Props) {
     const containerRef = useRef<HTMLDivElement | null>(null);
     const { startScroll, stopScroll } = useLenisControl();
+    const [formData, setFormData] = useState<Form>({
+        full_name: "",
+        company_name: "",
+        email_address: "",
+        phone_no: "",
+        message: ""
+    });
+    const [state, setState] = useState<FormState>({ phase: "idle" })
 
     useEffect(() => {
         const handleClickOutside = (event: MouseEvent) => {
@@ -55,6 +78,53 @@ export default function ContactUs({ open, onClose }: Props) {
             startScroll()
         }
     }, [open, startScroll, stopScroll])
+
+
+    function handleChange(e: ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) {
+        const { name, value } = e.target;
+        setFormData(prev => ({
+            ...prev,
+            [name]: value
+        }))
+    }
+
+    function validateInputs(): string | null {
+        if (!formData.full_name.trim()) return "Name is required";
+        if (!formData.email_address.trim()) return "Email address is required";
+        return null;
+    }
+
+    async function handleSubmit(e: React.FormEvent<HTMLFormElement>) {
+        e.preventDefault();
+
+        const error = validateInputs();
+        if (error) {
+            setState({ phase: "failed", reason: error });
+            return;
+        }
+
+        setState({ phase: "pending" });
+
+        try {
+            const { data } = await axios.post("/api/v1/form", formData);
+
+            if (!data.success) {
+                setState({ phase: "failed", reason: data.error ?? "Something went wrong." });
+                return;
+            }
+
+            setState({ phase: "success" });
+            setFormData({ full_name: "", company_name: "", email_address: "", phone_no: "", message: "" });
+
+        } catch (err) {
+            if (axios.isAxiosError(err)) {
+                const reason = err.response?.data?.error ?? "Something went wrong.";
+                setState({ phase: "failed", reason });
+            } else {
+                setState({ phase: "failed", reason: "Network error. Please try again." });
+            }
+        }
+    }
 
     return (
         <AnimatePresence mode="wait">
@@ -207,7 +277,7 @@ export default function ContactUs({ open, onClose }: Props) {
                                     </div>
 
                                     {/* Form */}
-                                    <form className="mt-8 space-y-5">
+                                    <form className="mt-8 space-y-5" onSubmit={handleSubmit}>
 
                                         <div className="grid sm:grid-cols-2 gap-5">
 
@@ -223,6 +293,9 @@ export default function ContactUs({ open, onClose }: Props) {
                                                     <input
                                                         type="text"
                                                         placeholder="John Doe"
+                                                        name="full_name"
+                                                        value={formData.full_name}
+                                                        onChange={handleChange}
                                                         className="w-full bg-transparent text-sm text-white outline-none placeholder:text-zinc-500"
                                                     />
                                                 </div>
@@ -240,6 +313,9 @@ export default function ContactUs({ open, onClose }: Props) {
                                                     <input
                                                         type="text"
                                                         placeholder="Your company"
+                                                        name="company_name"
+                                                        value={formData.company_name}
+                                                        onChange={handleChange}
                                                         className="w-full bg-transparent text-sm text-white outline-none placeholder:text-zinc-500"
                                                     />
                                                 </div>
@@ -260,6 +336,9 @@ export default function ContactUs({ open, onClose }: Props) {
                                                     <input
                                                         type="email"
                                                         placeholder="you@example.com"
+                                                        name="email_address"
+                                                        value={formData.email_address}
+                                                        onChange={handleChange}
                                                         className="w-full bg-transparent text-sm text-white outline-none placeholder:text-zinc-500"
                                                     />
                                                 </div>
@@ -277,6 +356,9 @@ export default function ContactUs({ open, onClose }: Props) {
                                                     <input
                                                         type="text"
                                                         placeholder="+91 9876543210"
+                                                        name="phone_no"
+                                                        value={formData.phone_no}
+                                                        onChange={handleChange}
                                                         className="w-full bg-transparent text-sm text-white outline-none placeholder:text-zinc-500"
                                                     />
                                                 </div>
@@ -298,22 +380,30 @@ export default function ContactUs({ open, onClose }: Props) {
                                                 <textarea
                                                     rows={5}
                                                     placeholder="Tell us about fabric type, GSM, quantity, export destination, or customization requirements..."
+                                                    name="message"
+                                                    value={formData.message}
+                                                    onChange={handleChange}
                                                     className="w-full resize-none bg-transparent text-sm leading-7 text-white outline-none placeholder:text-zinc-500"
                                                 />
                                             </div>
                                         </div>
 
+                                        {state.phase === "failed" && (
+                                            <p className="text-sm text-red-400">{state.reason}</p>
+                                        )}
+                                        {state.phase === "success" && (
+                                            <p className="text-sm text-green-400">Your inquiry has been sent. We'll be in touch within 24–48 hours.</p>
+                                        )}
                                         {/* Button */}
                                         <button
                                             type="submit"
-                                            className="group mt-2 flex h-14 w-full items-center justify-center gap-3 rounded-2xl bg-gold px-6 text-sm font-semibold text-dark transition-all duration-300 hover:scale-[1.01] hover:bg-[#d6b06c]"
+                                            disabled={state.phase === "pending"}
+                                            className="group mt-2 flex h-14 w-full items-center justify-center gap-3 rounded-2xl bg-gold px-6 text-sm font-semibold text-dark transition-all duration-300 hover:scale-[1.01] hover:bg-[#d6b06c] disabled:opacity-60 disabled:pointer-events-none"
                                         >
-                                            Submit Inquiry
-
-                                            <ArrowRight
-                                                size={17}
-                                                className="transition-transform duration-300 group-hover:translate-x-1"
-                                            />
+                                            {state.phase === "pending" ? "Sending..." : "Submit Inquiry"}
+                                            {state.phase !== "pending" && (
+                                                <ArrowRight size={17} className="transition-transform duration-300 group-hover:translate-x-1" />
+                                            )}
                                         </button>
                                     </form>
                                 </div>

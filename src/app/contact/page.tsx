@@ -2,8 +2,14 @@
 import Section from '@/src/components/ui/section';
 import Wrapper from '@/src/components/ui/wrapper';
 import { FadeUp } from '@/src/lib/fade_up';
+import axios from 'axios';
 import { useRef, useState } from 'react';
 
+type FormState =
+    | { phase: "idle" }
+    | { phase: "pending" }
+    | { phase: "success" }
+    | { phase: "failed"; reason: string };
 
 const inquiryTypes = [
     "Fabric Sample Request",
@@ -14,7 +20,7 @@ const inquiryTypes = [
 ];
 
 export default function ContactPage() {
-    const [submitted, setSubmitted] = useState(false);
+    const [formState, setFormState] = useState<FormState>({ phase: "idle" });
     const [form, setForm] = useState({
         name: "", company: "", email: "", phone: "", country: "", type: "", message: ""
     });
@@ -23,9 +29,28 @@ export default function ContactPage() {
         setForm({ ...form, [e.target.name]: e.target.value });
     };
 
-    const handleSubmit = (e: React.FormEvent) => {
+    const handleSubmit = async (e: React.FormEvent) => {
         e.preventDefault();
-        setSubmitted(true);
+        setFormState({ phase: "pending" });
+
+        try {
+            const { data } = await axios.post("/api/v1/contact", form);
+
+            if (!data.success) {
+                setFormState({ phase: "failed", reason: data.error ?? "Something went wrong." });
+                return;
+            }
+
+            setFormState({ phase: "success" });
+
+        } catch (err) {
+            if (axios.isAxiosError(err)) {
+                const reason = err.response?.data?.error ?? "Something went wrong.";
+                setFormState({ phase: "failed", reason });
+            } else {
+                setFormState({ phase: "failed", reason: "Network error. Please try again." });
+            }
+        }
     };
 
     return (
@@ -143,7 +168,7 @@ export default function ContactPage() {
 
                         {/* ─ Right: Form ─ */}
                         <FadeUp delay={0.1}>
-                            {submitted ? (
+                            {formState.phase === "success" ? (
                                 <div className="flex flex-col items-center justify-center h-full min-h-100 text-center py-12">
                                     <div className="text-5xl mb-6">🧵</div>
                                     <h3 className="font-yeseva text-dark text-3xl mb-3">Message received</h3>
@@ -223,11 +248,18 @@ export default function ContactPage() {
                                         />
                                     </div>
 
+                                    {formState.phase === "failed" && (
+                                        <p className="font-pop text-sm text-red-500 -mb-2">
+                                            {formState.reason}
+                                        </p>
+                                    )}
+
                                     <button
                                         type="submit"
-                                        className="font-mono text-[11px] font-semibold tracking-wide uppercase px-6 py-4 bg-dark text-cream rounded-lg hover:bg-[#2e2b26] transition-colors duration-200 mt-1"
+                                        disabled={formState.phase === "pending"}
+                                        className="font-mono text-[11px] font-semibold tracking-wide uppercase px-6 py-4 bg-dark text-cream rounded-lg hover:bg-[#2e2b26] transition-colors duration-200 mt-1 disabled:opacity-60 disabled:pointer-events-none"
                                     >
-                                        Send Inquiry
+                                        {formState.phase === "pending" ? "Sending..." : "Send Inquiry"}
                                     </button>
 
                                     <p className="font-pop text-[11px] text-[#aaa] text-center">
