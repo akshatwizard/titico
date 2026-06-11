@@ -61,6 +61,7 @@ export default function RootLayout({
     <html lang="en">
       <head>
         <link rel="shortcut icon" href="/images/logo/logo.png" type="image/x-icon" />
+        <meta name="google-site-verification" content="aZIXywkJgXMNxt6zva9y-LQkCDhPBe3ZxiZY3mxIziI" />
       </head>
       <body
         className={`${montserrat.variable} ${poppins.variable} ${playfair.variable} antialiased`}
