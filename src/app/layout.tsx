@@ -4,7 +4,7 @@ import "./globals.css";
 import Navbar from "../components/navbar";
 import SmoothScrollProvider from "../lib/smooth_scroll";
 import Footer from "../components/footer";
-import BG from "../components/ui/bg";
+import { GoogleAnalytics } from '@next/third-parties/google'
 
 const montserrat = Montserrat_Alternates({
   variable: "--font-montserrat",
@@ -71,6 +71,7 @@ export default function RootLayout({
           <Footer />
           {/* <BG /> */}
         </SmoothScrollProvider>
+        <GoogleAnalytics gaId="G-KS0FKXDHJT" />
       </body>
     </html>
   );
